@@ -2,6 +2,7 @@
         width: 1200px;
         height: 3125x;
         margin: 0px auto;
+		position: relative;
     }
     
     .center_nav {

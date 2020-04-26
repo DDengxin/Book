@@ -20,13 +20,19 @@ select title,tid,bname from book_content where bname=#{bookName}
     select content,title,bname,tid,book_id from book_content where bname = #{bookName} and tid=#{tid}
 
 </select>
-    <select id="getDescAllBook" resultType="BookInfo">
+
+<select id="getDescAllBook" resultType="BookInfo">
     select * from book_info order by ticket desc;
 </select>
 
-    <select id="getDescTypeBook" resultType="BookInfo" parameterType="String">
+<select id="getDescTypeBook" resultType="BookInfo" parameterType="String">
     select * from book_info where type=#{type} order by ticket desc;
 </select>
+
+<select id="getScoreBook" parameterType="String" resultType="BookInfo">
+    select * from book_info where type=#{type} order by score desc;
+</select>
+
 
 
 

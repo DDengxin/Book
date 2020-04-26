@@ -69,36 +69,6 @@ window.onload = function() {
 
     //li的悬浮层
     //a传li    b传li悬浮层   c传悬浮层里的div   d幻灯片 
-    function tab(a, b, c, d) {
-
-        a.onmouseover = c.onmouseover = function() {
-
-            a.style.backgroundColor = '#ed4259';
-            b.style.display = 'block';
-            d.style.display = 'none';
-            c.style.display = 'block';
-
-        }
-        a.onmouseout = c.onmouseout = function() {
-
-            a.style.backgroundColor = '';
-            b.style.display = 'none';
-            d.style.display = 'block';
-
-            c.style.display = 'none';
-        }
-
-    }
-
-    var sortli = selectall('.sortli');
-    var suspend = $('suspend');
-    var sus = selectall('.suspend_');
-    var container = $('container');
-
-    for (let i = 0; i < 9; i++) {
-
-        tab(sortli[i], suspend, sus[i], container)
-    }
 
     //li悬浮层里的切换
 

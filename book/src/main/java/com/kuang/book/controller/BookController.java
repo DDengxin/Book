@@ -27,6 +27,7 @@ public class BookController {
     @Qualifier("redisTemplates")
     RedisTemplate redisTemplate;
 
+
     @GetMapping("/index")
     public String index(Model model) {
         List<BookInfo> allBook = RedisFindUtil.getAllBook();
@@ -61,23 +62,27 @@ public class BookController {
     @GetMapping("/content")
     public String content(HttpServletRequest request, Model model) {
         String bookName = request.getParameter("bookName");
-        String page = request.getParameter("page");
         String id = request.getParameter("id");
-        int tid = Integer.parseInt(id);
-        //翻页
-        if (page !=null){
-        BookContent currentBook = bookService.getPage(tid, bookName, page);
-        model.addAttribute("currentBook",currentBook);
-        return "content";
-        }
-
         BookContent currentBook = bookMapper.getContent(id, bookName);
+        //翻页
+        if (currentBook==null){
+            BookContent allbook = bookMapper.getContent("1", bookName);
+            model.addAttribute("currentBook",allbook);
+            return "content";
+        }
         model.addAttribute("currentBook",currentBook);
         return "content";
 
 
     }
-
+    @GetMapping("sortBook")
+    public String bookSort(HttpServletRequest request,Model model){
+        String type = request.getParameter("type");
+        List<BookInfo> scoreBook = bookMapper.getScoreBook(type);
+        model.addAttribute("scoreBook",scoreBook);
+        System.out.println(scoreBook.get(0).getBname());
+        return "sort_book";
     }
+}
 
 

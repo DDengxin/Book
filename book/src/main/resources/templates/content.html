@@ -67,14 +67,14 @@
 
     <div class="head">
         <div>
-            <p><a th:href="@{'/content?id='+${currentBook.getTid()}+'&bookName='+${currentBook.getBname()}+'&page=forward'}">上一章</a></p>
+            <p><a th:href="@{'/content?id='+${currentBook.getTid()-1}+'&bookName='+${currentBook.getBname()}}">上一章</a></p>
             <p><a href="/index">首页</a></p>
         </div>
         <div>
             <h2 th:text="${currentBook.getTitle()}"></h2>
         </div>
         <div>
-            <p><a th:href="@{'/content?id='+${currentBook.getTid()}+'&bookName='+${currentBook.getBname()}+'&page=next'}">下一章</a></p>
+            <p><a th:href="@{'/content?id='+${currentBook.getTid()+1}+'&bookName='+${currentBook.getBname()}}">下一章</a></p>
             <p><a th:href="@{'/read?id='+${currentBook.getBook_id()}+'&bookName='+${currentBook.getBname()}}">目录</a></p>
         </div>
     </div>

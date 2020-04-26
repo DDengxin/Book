@@ -22,4 +22,6 @@ public interface BookMapper {
    //获取单个类型的所有书籍，按月票大小排序
    List<BookInfo> getDescTypeBook(String type);
 
+   //获取按类型的评分大小
+   List<BookInfo> getScoreBook(String type);
 }

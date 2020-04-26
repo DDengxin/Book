@@ -80,14 +80,14 @@
 
 .register {
     display: none;
-    /*background: white;*/
+    background: white;
     width: 400px;
     height: 400px;
     position: fixed;
     left: 0;
     right: 0;
     margin: 70px auto;
-    /*z-index: 999;*/
+    z-index: 999;
 }
 
 #register_rise {
