@@ -1,0 +1,56 @@
+.center {
+    height: 1595px;
+}
+
+.ex {
+    margin-top: 10px;
+    width: 1200px;
+    height: 500px;
+}
+
+.ex div {
+    width: 500px;
+    height: 450px;
+    float: left;
+}
+
+.ex img {
+    width: 440px;
+    height: 450px;
+}
+
+.ex2 p:nth-child(2n-1) {
+    width: 100px;
+    height: 30px;
+    padding-top: 5px;
+    margin-top: 0px;
+    text-align: center;
+    color: black;
+    width: 80px;
+}
+
+.ex2 p:nth-child(1) {
+    background: #bf2c24;
+    color: white;
+}
+
+.ex2 a {
+    float: left;
+    margin-right: 10px;
+    ;
+}
+
+.ex2 p:nth-child(2n-1):hover {
+    background: rgb(207, 76, 76);
+    color: white;
+}
+
+#extwo {
+    display: none;
+}
+
+.number {
+    margin: 0;
+    float: right;
+    height: 30px;
+}

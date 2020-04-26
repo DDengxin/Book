@@ -1,0 +1,16 @@
+1.判断两个字符串值是否相等使用equals，判断两个地址使用==
+2.HttpSession session
+session.setAttribute("pwd",password) 设置session属性
+session.invalidate();清除session
+
+
+2.如果我们需要在url有多个参数需要获取，则如下代码所示来做就可以了。
+
+@RestController
+public class HelloController {
+
+    @RequestMapping(value="/hello/{id}/{name}",method= RequestMethod.GET)
+    public String sayHello(@PathVariable("id") Integer id,@PathVariable("name") String name){
+        return "id:"+id+" name:"+name;
+    }
+}

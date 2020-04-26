@@ -1,0 +1,237 @@
+/*li的悬浮窗*/
+
+#suspend {
+    width: 808px;
+    height: 500px;
+    background: #eeeded;
+    display: none;
+}
+
+.suspend_ {
+    display: none;
+}
+
+.suspend1 {
+    width: 390px;
+    height: 490px;
+}
+
+.suspend2 {
+    width: 400px;
+    height: 490px;
+}
+
+.suspend2 div:nth-child(1) {
+    height: 280px;
+}
+
+.suspend1 img {
+    margin: 10px 20px;
+    width: 350px;
+    height: 450px;
+}
+
+.suspend1 h4 {
+    margin-left: 20px;
+    width: 350px;
+    height: 100px;
+    color: white;
+    text-align: center;
+    margin-top: -148px;
+    padding-top: 10px;
+    background: black;
+    opacity: 0.5;
+}
+
+.suspend1 h4 a {
+    color: white;
+}
+
+.suspend1 h4 p {
+    font: 12px/2.5 "宋体", Arial, "微软雅黑";
+}
+
+.suspend2 img {
+    margin: 50px 20px;
+    width: 85px;
+    height: 120px;
+    border: 2px solid #999999;
+}
+
+.suspend2 img:hover {
+    border: 2px solid #990000;
+}
+
+.suspend2 h4 {
+    margin: 10px 0px;
+    color: #990000;
+}
+
+.suspend2 p {
+    font: 12px/2.5 "宋体", Arial, "微软雅黑";
+}
+
+.suspend2 p span {
+    font: 700 14px/1 '宋体';
+}
+
+
+/*登录注册窗口*/
+
+.register {
+    display: none;
+    /*background: white;*/
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 70px auto;
+    /*z-index: 999;*/
+}
+
+#register_rise {
+    height: 500px;
+}
+
+#gain:hover {
+    background: silver;
+}
+
+body .close {
+    width: 30px;
+    height: 23px;
+    float: right;
+    background: white;
+    text-align: center;
+    outline: none;
+}
+
+.register_one {
+    width: 340px;
+    height: 50px;
+    border-bottom: 2px solid #e6e6e6;
+    margin: 5px auto;
+}
+
+.register_one p {
+    float: left;
+    color: #6c6c6c;
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+.register_two {
+    width: 320px;
+    height: 300px;
+    margin: 5px auto;
+}
+
+.register_two p {
+    padding-top: 10px;
+}
+
+.register_two input {
+    height: 40px;
+    width: 300px;
+    outline: none;
+    border: 1px solid #e6e6e6;
+}
+
+.register a {
+    color: black;
+    margin: 10px 1px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.register a:hover {
+    color: #bf2c24;
+}
+
+.register_sub {
+    width: 300px;
+    margin: 20px auto;
+    background: #bf2c24;
+    border: 0px;
+    color: aliceblue;
+}
+
+.register_sub:hover {
+    background: #ed4259;
+}
+
+
+/*阴影层*/
+
+.mask {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, .7);
+    z-index: 99;
+    left: 0px;
+    top: 0px;
+}
+
+
+/*input的下拉选项*/
+
+.put div {
+    width: 270px;
+    height: 280px;
+    border: 1px solid #333333;
+    background: white;
+    position: relative;
+    z-index: 99999;
+    display: none;
+}
+
+.put li {
+    margin: 20px 0px;
+}
+
+.put li:nth-child(1) {
+    background: #f7f7f7;
+    margin-top: 0px;
+}
+
+.put li:hover {
+    background: black;
+}
+
+.put a:hover {
+    color: white;
+}
+
+.put a {
+    color: black;
+}
+
+
+/*编辑推荐的悬浮说明*/
+
+.su1 {
+    width: 100px;
+    margin: 50px 50px;
+}
+
+
+/*置顶按钮*/
+
+#stick {
+    position: fixed;
+    left: 1400px;
+    top: 570px;
+    display: none;
+    opacity: 0.8;
+}
+
+#stick button {
+    width: 50px;
+    height: 90px;
+    text-align: center;
+    background: black;
+    color: white;
+}

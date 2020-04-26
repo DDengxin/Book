@@ -1,0 +1,773 @@
+    .center {
+        width: 1200px;
+        height: 3125x;
+        margin: 0px auto;
+    }
+    
+    .center_nav {
+        width: 1200px;
+        height: 50px;
+        background-color: black;
+        /*导航栏背景*/
+    }
+    
+    .center_nav li {
+        height: 27px;
+        margin: 10px 40px;
+        float: left;
+        border-bottom: 0px solid black;
+    }
+    
+    .center_nav a {
+        color: white;
+    }
+    
+    .center_nav li:nth-child(1) {
+        margin: 0px;
+        width: 190px;
+        height: 47px;
+        background-color: black;
+        text-align: center;
+        line-height: 45px;
+        border-bottom: 0px;
+    }
+    
+    .center_nav li:nth-child(1) {
+        border: 0px;
+    }
+    
+    .center_nav li:nth-child(7) {
+        margin-left: 267px;
+    }
+    
+    .center_nav a:nth-child(n):hover {
+        color: brown;
+    }
+    /*li和轮播图模块*/
+    
+    .slideshow div {
+        float: left;
+    }
+    
+    .slideshow {
+        width: 1200px;
+        height: 500px;
+        overflow: hidden;
+    }
+    
+    #sort {
+        height: 500px;
+        width: 190px;
+        float: left;
+    }
+    /*悬浮窗旁边的li*/
+    
+    #sort li {
+        width: 100%;
+        height: 50px;
+        margin: 0px auto;
+        border-radius: 0px;
+        /*圆角*/
+        border: 1px solid #333333;
+        line-height: 45px;
+    }
+    
+    #sort li:nth-child(n+0) {
+        background: black;
+    }
+    
+    #sort a {
+        font-size: 14px;
+        margin: 70px;
+        color: white;
+    }
+    
+    em {
+        color: #9b9b9b;
+    }
+    
+    #sort li:hover {
+        background-color: #ed4259;
+        color: white;
+    }
+    /*悬浮窗旁边的li结束*/
+    /*轮播图*/
+    
+    .slideshow img {
+        width: 808px;
+        height: 500px;
+    }
+    
+    #container {
+        display: block;
+        position: relative;
+        width: 808px;
+        height: 500px;
+        overflow: hidden;
+        /*隐藏溢出的图片*/
+    }
+    
+    #container .wrap {
+        width: 808px;
+        height: 500px;
+        margin: 0px auto;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #container .box {
+        height: 500px;
+        width: 7056px;
+        position: absolute;
+        left: -0px;
+    }
+    
+    #container .item {
+        width: 808px;
+        height: 500px;
+        float: left;
+        margin: 0px;
+    }
+    
+    #container .item img {
+        width: 808px;
+        height: 500px;
+        margin: 0px;
+    }
+    
+    #container .pre,
+    #container .next {
+        position: absolute;
+        top: 210px;
+        font-size: 50px;
+        width: 40px;
+        height: 50px;
+        color: white;
+        text-align: center;
+        display: none;
+        line-height: 50px;
+    }
+    
+    #container .pre:hover,
+    #container .next:hover {
+        background: black;
+    }
+    
+    #container .next {
+        left: 970px;
+    }
+    
+    #container .dian {
+        width: 600px;
+        height: 30px;
+        position: absolute;
+        bottom: 10px;
+        left: 20%;
+    }
+    
+    #dian span {
+        cursor: pointer;
+    }
+    
+    #container .btn {
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        /*border-radius: 50%;*/
+        background-color: black;
+        color: white;
+        float: left;
+        margin: 1px;
+        display: block;
+    }
+    
+    #container span:hover {
+        background: #2e2929;
+        border-top: 1px solid black;
+    }
+    /*轮播结束*/
+    /*li和轮播图模块结束*/
+    
+    #ex {
+        width: 202px;
+        height: 500px;
+        background: black;
+    }
+    
+    .slip {
+        width: 200px;
+        height: 491px;
+        overflow: hidden;
+        border-top: 1px solid #333333;
+    }
+    
+    .slip div:nth-child(1) {
+        position: relative;
+        width: 200px;
+        height: 1300px;
+        margin: 0px auto;
+        margin-top: 0px;
+        top: 0px;
+    }
+    
+    .slip p:nth-child(n) {
+        text-align: center;
+        margin: -10px auto 20px;
+        color: white;
+    }
+    
+    .slip img {
+        width: 150px;
+        height: 150px;
+        margin: 10px 27px;
+    }
+    
+    .slip img:hover {
+        width: 156px;
+        height: 156px;
+        margin: 7px 24px;
+    }
+    /*推荐模块shove*/
+    
+    .shove {
+        width: 1220px;
+        height: 600px;
+    }
+    
+    .shove div {
+        float: left;
+    }
+    /*本周推荐*/
+    
+    .shove_one {
+        width: 189px;
+        height: 600px;
+    }
+    
+    .shove_one p,
+    .shove_thrre p {
+        font-weight: bold;
+        font-size: 16px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #9b9b9b;
+    }
+    
+    .shove_one li,
+    .shove_thrre li {
+        margin-top: 20px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #9b9b9b;
+    }
+    
+    .shove_thrre li {
+        margin-left: 48px;
+    }
+    
+    .shove_one a,
+    .shove_thrre a {
+        font-size: 13px;
+        color: black;
+        margin-right: 3px;
+    }
+    
+    .shove_one a:hover,
+    .shove_thrre a:hover,
+    #redact a:hover {
+        color: tomato;
+    }
+    
+    .shove_one em,
+    .shove_thrre em {
+        float: right;
+    }
+    
+    .shove_one a {
+        margin-bottom: 20px;
+    }
+    /*编辑推荐*/
+    
+    .shove_tow {
+        width: 810px;
+        height: 600px;
+    }
+    
+    .shove_tow p {
+        margin-top: 19px;
+        margin-left: 20px;
+        font-weight: bold;
+        font-size: 16px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #9b9b9b;
+    }
+    
+    #redact div {
+        width: 180px;
+        height: 240px;
+        margin: 2px 0px 0px 70px;
+    }
+    
+    #redact a {
+        color: #333333;
+        padding-left: 0px;
+        padding-top: 30px;
+    }
+    
+    #redact img {
+        width: 180px;
+        height: 180px;
+        margin-top: 30px;
+        margin-left: 0px;
+    }
+    
+    #redact img:hover {
+        width: 182px;
+        height: 182px;
+        margin-top: 29px;
+        margin-left: -1px;
+        cursor: pointer;
+    }
+    
+    #redact h4 {
+        background: black;
+        opacity: 0.7;
+        width: 180px;
+        height: 76px;
+        margin: -100px 0px;
+        color: white;
+        font-size: 13px;
+        display: none;
+        font-weight: normal
+    }
+    /*网文新风*/
+    
+    .shove_thrre {
+        width: 189px;
+        height: 600px;
+        margin-left: 10px;
+    }
+    
+    .shove_thrre li {
+        margin-left: 0px;
+    }
+    /*榜单*/
+    
+    .announc {
+        width: 1200px;
+        height: 410px;
+        overflow: hidden;
+        margin: 0px auto;
+    }
+    
+    .announc tr:nth-child(1) {
+        height: 0px;
+    }
+    
+    .announc tr:nth-child(2) h5 {
+        color: #bf2c24;
+        margin-top: 10px;
+        font: 16px PingFangSC-Regular, '-apple-system', Simsun;
+    }
+    
+    .announc img {
+        width: 80px;
+        height: 130px;
+        margin: 0px 10px;
+        transition: all 500ms ease;
+        transform-style: preserve-3d;
+        transform: perspective(800px) rotateY(-40deg)
+    }
+    
+    .announc img:hover {
+        transform: perspective(800px) rotateY(0deg);
+    }
+    
+    .announc h3,
+    .announc h4,
+    .announc h5 {
+        margin-top: 5px;
+    }
+    
+    .announc h3,
+    .announc h4 {
+        height: 15px;
+    }
+    
+    .announc a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .announc a:hover {
+        color: #ed4259;
+    }
+    
+    .anfont span {
+        border-bottom: 1px black solid;
+    }
+    
+    table {
+        width: 1260px;
+        margin: 0px;
+    }
+    
+    td {
+        /*border: 1px solid black;*/
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    li {
+        list-style: none;
+        /*border: 1px solid black;*/
+    }
+    
+    .anfont a {
+        font-size: 1px;
+    }
+    
+    .NO2_ td {
+        height: 40px;
+    }
+    
+    table tr:nth-child(2) h4:nth-child(1) {
+        height: 23px;
+        width: 45px;
+        background: #bf2c24;
+        color: aliceblue;
+        margin: 0px;
+        text-align: center;
+    }
+    
+    body table tr:nth-child(2) h5:nth-child(n) a:nth-child(n) i:nth-child(n) {
+        font: 12px PingFangSC-Regular, '-apple-system', Simsun;
+        color: #a7a7a7;
+    }
+    
+    table tr:nth-child(3) td:nth-child(3n-2) h4,
+    table tr:nth-child(4) td:nth-child(3n-2) h4,
+    table tr:nth-child(5) td:nth-child(3n-2) h4,
+    table tr:nth-child(6) td:nth-child(3n-2) h4,
+    table tr:nth-child(7) td:nth-child(3n-2) h4,
+    table tr:nth-child(8) td:nth-child(3n-2) h4,
+    table tr:nth-child(9) td:nth-child(3n-2) h4,
+    table tr:nth-child(10) td:nth-child(3n-2) h4,
+    table tr:nth-child(11) td:nth-child(3n-2) h4 {
+        width: 20px;
+        height: 20px;
+        background: #e67225;
+        text-align: center;
+        margin-top: 6px;
+        color: white;
+    }
+    
+    table tr:nth-child(4) td:nth-child(3n-2) h4 {
+        background: #e6bf25;
+    }
+    
+    table tr:nth-child(5) td:nth-child(3n-2) h4,
+    table tr:nth-child(6) td:nth-child(3n-2) h4,
+    table tr:nth-child(7) td:nth-child(3n-2) h4,
+    table tr:nth-child(8) td:nth-child(3n-2) h4,
+    table tr:nth-child(9) td:nth-child(3n-2) h4,
+    table tr:nth-child(10) td:nth-child(3n-2) h4,
+    table tr:nth-child(11) td:nth-child(3n-2) h4 {
+        background: #ededed;
+        color: black;
+    }
+    
+    table tr:nth-child(3) td:nth-child(3n-1) h5,
+    table tr:nth-child(4) td:nth-child(3n-1) h5,
+    table tr:nth-child(5) td:nth-child(3n-1) h5,
+    table tr:nth-child(6) td:nth-child(3n-1) h5,
+    table tr:nth-child(7) td:nth-child(3n-1) h5,
+    table tr:nth-child(8) td:nth-child(3n-1) h5,
+    table tr:nth-child(8) td:nth-child(3n-1) h5,
+    table tr:nth-child(9) td:nth-child(3n-1) h5,
+    table tr:nth-child(10) td:nth-child(3n-1) h5,
+    table tr:nth-child(11) td:nth-child(3n-1) h5 {
+        padding-bottom: 3px;
+        border-bottom: 1px solid #a7a7a7;
+        margin-right: 0px;
+        text-align: center;
+    }
+    
+    table tr:nth-child(3) td:nth-child(3n) h4,
+    table tr:nth-child(4) td:nth-child(3n) h4,
+    table tr:nth-child(5) td:nth-child(3n) h4,
+    table tr:nth-child(6) td:nth-child(3n) h4,
+    table tr:nth-child(7) td:nth-child(3n) h4,
+    table tr:nth-child(8) td:nth-child(3n) h4,
+    table tr:nth-child(9) td:nth-child(3n) h4,
+    table tr:nth-child(10) td:nth-child(3n) h4,
+    table tr:nth-child(11) td:nth-child(3n) h4 {
+        font: 12px PingFangSC-Regular, '-apple-system', Simsun;
+        margin-bottom: 1px;
+        color: #a7a7a7;
+    }
+    /*榜单结束*/
+    /*展开*/
+    
+    .unfold {
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        color: black;
+        cursor: pointer;
+        margin: 0px auto;
+    }
+    
+    .unfold:hover {
+        color: #ed4259;
+    }
+    /*refined精品*/
+    /*热门作品*/
+    
+    .rotete_header {
+        width: 1200px;
+        margin-top: 10px;
+        font-size: 22px;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }
+    
+    .ro {
+        width: 1200px;
+        height: 930px;
+    }
+    /*热门作品*/
+    
+    .hot {
+        width: 400px;
+        height: 495px;
+        overflow: hidden;
+        background: #f7f5f0;
+        border-bottom: 1px solid #a7a7a7;
+    }
+    
+    .rotate {
+        width: 400px;
+        height: 190px;
+        margin: 10px auto;
+        overflow: hidden;
+    }
+    
+    .rotate_img {
+        width: 390px;
+        height: 200px;
+        margin: 2px auto;
+        cursor: pointer
+    }
+    
+    .rotate_img li {
+        list-style: none;
+        float: left;
+        margin-top: 20px;
+        z-index: 99;
+        position: relative;
+    }
+    
+    .rotate_img li:nth-child(1) {
+        left: 50px;
+    }
+    
+    .rotate_img li:nth-child(2) {
+        z-index: 999;
+        top: -15px;
+    }
+    
+    .rotate_img li:nth-child(3) {
+        z-index: 99;
+        left: -40px;
+    }
+    
+    .rotate_img img {
+        width: 120px;
+        height: 130px;
+    }
+    
+    .rotate_img li:nth-child(2) img {
+        width: 150px;
+        height: 160px;
+    }
+    /*div2*/
+    
+    .rote {
+        width: 400px;
+        margin: 1px auto;
+        overflow: hidden;
+    }
+    
+    .rote div {
+        display: none;
+    }
+    
+    .rote div:nth-child(2) {
+        display: inline;
+    }
+    
+    .rote a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .rote h4 {
+        width: 400px;
+        text-align: center;
+    }
+    
+    .rote p:nth-child(3n-1) {
+        text-align: center;
+        margin-top: 20px;
+        width: 400px;
+    }
+    
+    .rote p:nth-child(3n-1) a {
+        color: brown;
+        width: 400px;
+    }
+    
+    .rote p:nth-child(4n-1) {
+        text-align: center;
+        margin-top: 20px;
+        width: 400px;
+    }
+    
+    .rote p:nth-child(4n-1) a {
+        color: #626260;
+        width: 400px;
+    }
+    
+    .rote p:nth-child(4n) {
+        text-align: center;
+        font: 12px/20px PingFangSC-Regular, '-apple-system', Simsun;
+        color: #626260;
+        width: 400px;
+    }
+    
+    .rote p:nth-child(5n) {
+        margin: 80px 150px;
+        width: 90px;
+        height: 25px;
+        border-radius: 15px;
+        background: #bf2c24;
+    }
+    
+    .rote p:nth-child(5n):hover {
+        background: #ec4258;
+    }
+    
+    .rote p:nth-child(5n) a:nth-child(1) {
+        color: white;
+    }
+    
+    .rote div:nth-child(n) {
+        width: 288px;
+        margin: 0px auto;
+    }
+    
+    body .grade {
+        color: brown;
+        font: 12px/10px PingFangSC-Regular, '-apple-system', Simsun;
+    }
+    /*热门作品结束*/
+    /*免费系列*/
+    /*ad*/
+    
+    body .adtop {
+        border-top: 10px solid white;
+    }
+    
+    .exempt {
+        margin-top: 20px;
+        width: 1200px;
+        height: 300px;
+    }
+    
+    .exempt div {
+        float: left;
+        width: 192px;
+        height: 299px;
+        margin: auto 3px;
+    }
+    
+    .exempt p {
+        margin: 5px 62px;
+    }
+    
+    .exempt div:nth-child(1) p:nth-child(1),
+    .exempt div:nth-child(1) p:nth-child(2) {
+        width: 100px;
+        margin-left: 45px;
+    }
+    
+    .exempt div:nth-child(1) p:nth-child(4) {
+        margin-top: 20px;
+        margin-left: 45px;
+    }
+    
+    .exempt div:nth-child(1) p:nth-child(5) {
+        margin-top: 20px;
+        margin-left: 45px;
+    }
+    
+    .exempt s {
+        margin: 0px 65px;
+        width: 120px;
+        font: 10px/14px PingFangSC-Regular, '-apple-system', Simsun;
+    }
+    
+    body .exempt p:nth-child(5) {
+        font-size: 14px;
+    }
+    
+    .exempt div:nth-child(1) img {
+        width: 65px;
+        height: 65px;
+        margin: 10px 63px;
+    }
+    
+    .exempt div:nth-child(2n-1) {
+        background: #f7f5f0;
+    }
+    
+    .exempt div:nth-child(2) img,
+    .exempt div:nth-child(3) img,
+    .exempt div:nth-child(4) img,
+    .exempt div:nth-child(5) img,
+    .exempt div:nth-child(6) img {
+        width: 100px;
+        height: 150px;
+        margin-left: -18px;
+    }
+    
+    .exempt div:nth-child(2) p:nth-child(2),
+    .exempt div:nth-child(3) p:nth-child(2),
+    .exempt div:nth-child(4) p:nth-child(2),
+    .exempt div:nth-child(5) p:nth-child(2),
+    .exempt div:nth-child(6) p:nth-child(2) {
+        width: 120px;
+        margin-left: 35px;
+    }
+    
+    .exempt div:nth-child(2) p:nth-child(4),
+    .exempt div:nth-child(3) p:nth-child(4),
+    .exempt div:nth-child(4) p:nth-child(4),
+    .exempt div:nth-child(5) p:nth-child(4),
+    .exempt div:nth-child(6) p:nth-child(4) {
+        margin-left: 53px;
+        width: 70px;
+        border: 2px solid #8eb4e6;
+        border-radius: 20px;
+        padding-left: 8px;
+        color: #8eb4e6;
+    }
+    
+    .exempt div:nth-child(2) p:nth-child(4):hover,
+    .exempt div:nth-child(3) p:nth-child(4):hover,
+    .exempt div:nth-child(4) p:nth-child(4):hover,
+    .exempt div:nth-child(5) p:nth-child(4):hover,
+    .exempt div:nth-child(6) p:nth-child(4):hover {
+        background: #f0f5ff;
+        cursor: pointer
+    }

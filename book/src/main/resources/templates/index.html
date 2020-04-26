@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>黄金屋小说网</title>
+    <link rel="stylesheet" href="/css/index.css">
+
+</head>
+
+<body>
+    <div class="wrap" id="wrap">
+        <div class="head">
+<!--            xxx-->
+            <div class="head_nav" th:fragment="head_nav">
+                <div>
+                    <a href="./index.html">
+                        <li>首页</li>
+                    </a>
+                    <li>|</li>
+                    <a href="#">
+                        <li>导航</li>
+                    </a>
+                    <li>|</li>
+                    <a href="./MyBookshelf.html">
+                        <li>个人中心</li>
+                    </a>
+                </div>
+
+                <div class="login">
+                    <li th:if="${not #strings.isEmpty(session.username)}">尊敬的用户：<a th:text="${session.username}"></a></li>
+                    <li><a id="login" href="/login" th:utext="${session.username==null}?'登录 |':''">登录</a></li>
+                    <li><a id="register" href="/register" th:utext="${session.username==null}?'注册':''">注册</a></li>
+                    <li><a id="logout" href="/logout" th:if="${not #strings.isEmpty(session.username)}" th:text="注销">注销</a></li>
+                    <!--登录悬浮窗,css：solid.css-->
+                    <div class="register" id="login_rise">
+                        <a href="#" style="font-size: 18px;color: #6c6c6c;" id="login_close" class="close"></a>
+                    </div>
+                    <!--登录悬浮窗结束-->
+
+                    <!--注册悬浮窗solid.css--->
+                    <div class="register" id="register_rise">
+                        <a href="#" style="font-size: 18px;color: #6c6c6c;" id="register_close" class="close">X</a>
+                    </div>
+                    <!--注册悬浮窗结束-->
+
+                </div>
+            </div >
+            <div class="head_ad" th:fragment="head_ad">
+                <a href=""><img src="/images/logo4.gif" alt=""></a>
+            </div>
+            <div class="head_se">
+                <div class="logo">
+                    <a href="/index.html"><img src="/images/logo.jpg" alt=""></a>
+                </div>
+                <div class="put">
+
+
+                        <input id="putdiv" autocomplete="off" type="text">
+                    <button>搜索</button>
+                    </form>
+                </div>
+                <div class="book"><a href="/selfInfo">我的书架</a></div>
+            </div>
+        </div>
+        <!--head部分结束-->
+
+        <!--center部分-->
+        <div class="center">
+            <div class="center_nav">
+                <li><a href="#zhansi">作品展示</a></li>
+                <li><a href="#tuijian">全部作品</a></li>
+                <li><a href="#paihang">排行</a></li>
+                <li><a href="/academies.html">完本</a></li>
+                <li><a href="#mianfei">免费</a></li>
+                <li><a href="/MyBookshelf.html">客户端</a></li>
+                <li><a href="#">本站推荐</a></li>
+            </div>
+            <div class="slideshow ">
+                <div id="sort" class="sort">
+                    <li class="sortli"><a href="/fantasy.html">奇幻</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">武侠</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">军事</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">历史</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">游戏</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">奇幻</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">科幻</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">悬疑</a><em>></em></li>
+                    <li class="sortli"><a href="/fantasy.html">体育</a><em>></em></li>
+                    <li></li>
+                </div>
+
+                <!--li悬浮窗-->
+                <div id="suspend">
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+
+                            <h4><a>吞天</a>
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut1">
+                            <div>
+                                <h4>吞天</h4>
+                                <p><span>[点评]:</span> 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg1">
+
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a href="/read.html"><img src="/images/彼岸/魔道祖师.jpg" alt=""></a>
+
+                            <h4><a href="/read.html">斗破苍穹</a>
+                                <p>
+                                    [点评]：在看《斗破苍穹》的时候就要在有些不明白为什么古元的年龄那么大为什么他的女儿年龄那么小和一些其他的方面不理解。
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut2">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p><span>[点评]:</span> 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg2">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a><img src="/images/彼岸/云梦.jpg" alt=""></a>
+
+                            <h4><a>武动乾坤</a>
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut3">
+                            <div>
+                                <h4>武动乾坤</h4>
+                                <p><span>[点评]:</span> 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg3">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a><img src="/images/彼岸/男孩 ǽֽ 梦想 月亮 云 船 飞行 4K壁纸_彼岸图网.jpg" alt=""></a>
+                            <h4 id="state">武动乾坤--
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut4">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p>
+                                    <span>[点评]：</span>穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级，
+                                    升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg4">
+                                <a href="/read.html"><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a href="/read.html"><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a href="/read.html"><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a><img src="/images/彼岸/魔道祖师.jpg" alt=""></a>
+
+                            <h4 id="state">魔道祖师--云梦篇
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut5">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p>
+                                    <span>[点评]：</span>穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级，
+                                    升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg5">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a><img src="/images/3.jpg" alt=""></a>
+
+                            <h4 id="state">魔道祖师--云梦篇
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut6">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p>
+                                    <span>[点评]：</span>穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级，
+                                    升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg6">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a href="/read.html"><img src="/images/三体.jpg" alt=""></a>
+
+                            <h4 id="state">魔道祖师--云梦篇
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut7">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p>
+                                    <span>[点评]：</span>穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级，
+                                    升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg7">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a href="/read.html"><img src="/images/幻灯图2.jpg" alt=""></a>
+
+                            <h4 id="state">魔道祖师--云梦篇
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut8">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p>
+                                    <span>[点评]：</span>穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级，
+                                    升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg8">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suspend_">
+                        <div class="suspend1">
+                            <a href="/read.html"><img src="/images/盗墓笔记.jpg" alt=""></a>
+
+                            <h4 id="state">魔道祖师--云梦篇
+                                <p>
+                                    [点评]：陈宇重生，化身《吞天》游戏中最大BOSS。玩家系统激活，开局便是至尊天赋、十倍伤害！
+                                </p>
+                            </h4>
+                        </div>
+                        <div class="suspend2 cut9">
+                            <div>
+                                <h4>魔道祖师</h4>
+                                <p>
+                                    <span>[点评]：</span>穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级， 升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。 穿越平行世界的苏楠， 幸运得到吃鸡之无限升级系统， 在游戏中淘汰玩家可获取经验值升级，
+                                    升级后系统会给予奖励，枪械精通、神级天赋、黑科技物品等应有尽有。
+                                </p>
+                            </div>
+                            <div class="cutimg9">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--li悬浮结束-->
+
+                <!--轮播图-->
+                <div id="container">
+                    <div class="wrap" id="wrap">
+                        <div class="box">
+                            <div class="item item5">
+                                <a><img src="/images/彼岸/136126fa5b24d51f7ef99b6b73d55fce.jpg" alt="" /></a>
+                            </div>
+                            <div class="item item1">
+                                <a><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt="" /></a>
+                            </div>
+                            <div class="item item2">
+                                <a href="/read.html"><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt="" /></a>
+                            </div>
+                            <div class="item item3">
+                                <a><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt="" /></a>
+                            </div>
+                            <div class="item item4">
+                                <a><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt="" /></a>
+                            </div>
+                            <div class="item item5">
+                                <a><img src="/images/彼岸/男孩 ǽֽ 梦想 月亮 云 船 飞行 4K壁纸_彼岸图网.jpg" alt="" /></a>
+                            </div>
+                            <div class="item item1">
+                                <a><img src="/images/彼岸/男孩 ǽֽ 梦想 月亮 云 船 飞行 4K壁纸_彼岸图网.jpg" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class="pre" id="pre">
+                        </div>
+                        <div class="next" id="next">>
+                        </div>
+                        <div class="dian" id="dian">
+                            <span class="btn" style="background: #ed4259">盗墓笔记</span>
+                            <span class="btn">斗破苍穹</span>
+                            <span class="btn">魔道祖师</span>
+                            <span class="btn">盗墓笔记</span>
+                            <span class="btn">魔道祖师</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--右边轮播图-->
+                <div id="ex">
+                    <div class="slip" id="slip">
+                        <div>
+                            <a th:each="book:${books}" th:if="${book.getId()<=6}">
+                            <a  th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}"><img th:src="${book.getImg()}"></a>
+                            <p th:text="${book.getBname()}"></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--推荐模块-->
+            <div class="shove" id="tuijian">
+                <div class="shove_one">
+                    <p style="margin-top:20px;">本周推荐</p>
+                    <ul>
+                        <li th:each="book:${books}"th:if="${book.getId()}>20 and ${book.getId()}<33">
+                            <a th:text="'['+${book.getType()}+']'"></a>
+                            <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}" th:text="${book.getBname()}">三体</a>
+                            <em><a href="/read.html" th:text="${book.getAuthor()}">刘慈溪</a></em>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="shove_tow">
+                    <p>编辑推荐</p>
+                    <div id="redact" class="redact">
+                        <div th:each="book:${books}" th:if="${book.getId()<=5}">
+                            <img src="" th:src="${book.getImg()}">
+                            <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}" th:text="${book.getBname()}">三体</a>
+                            <h4 class="reh4" th:text="${book.getDescription()}">
+                            </h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="shove_thrre">
+                    <p style="margin-top:20px;">新文风</p>
+                    <ul>
+                        <li th:each="book:${books}" th:if="${book.getId()}<=12">
+                            <a th:text="'['+${book.getType()}+']'"></a>
+                            <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}" th:text="${book.getBname()}">三体</a>
+                            <em><a href="/read.html" th:text="${book.getAuthor()}">刘慈溪</a></em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <a href="/index"><img src="/images/logo4.gif" id="paihang" alt=""></a>
+            </div>
+
+            <!--榜-->
+            <div class="announc" id="annouc">
+
+                <table width="500">
+                    <tr class="anfont">
+                        <td colspan="4">
+                            <h3><span>玄幻榜　<a href="#">更多></span></a>
+                            </h3>
+                        </td>
+                        <td colspan="4">
+                            <h3><span>都市榜　<a href="#">更多></span></a>
+                            </h3>
+                        </td>
+                        <td colspan="4">
+                            <h3><span>历史榜　<a href="#">更多></span></a>
+                            </h3>
+                        </td>
+
+                        <td colspan="4">
+                            <h3><span>修仙榜　<a href="#">更多></span></a>
+                            </h3>
+                        </td>
+                        <td colspan="4">
+                            <h3><span>武侠榜　<a href="#">更多></span></a>
+                            </h3>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <!--       玄幻         -->
+                        <td colspan="3">
+                            <h4>NO.1</h4>
+                            <h4 th:inline="text"><a th:href="@{'/read?id='+${xuanhuan.get(0).getId()}+'&bookName='+${xuanhuan.get(0).getBname()}}">[[${xuanhuan.get(0).getBname()}]]</a></h4>
+                            <h5 th:text="${xuanhuan.get(0).getTicket()}+'月票'">9099月票<br><a href="./fantasy.html"><i th:text="${xuanhuan.get(0).getScore()}">仙侠</i></a>
+                                <h5>
+                        </td>
+                        <td colspan="1">
+                            <a th:href="@{'/read?id='+${xuanhuan.get(0).getId()}+'&bookName='+${xuanhuan.get(0).getBname()}}"><img th:src="${xuanhuan.get(0).getImg()}" alt=""></a>
+                        </td>
+                        <!--        都市           -->
+                        <td colspan="3">
+                            <h4>NO.1</h4>
+                            <h4 th:inline="text"><a th:href="@{'/read?id='+${dushi.get(0).getId()}+'&bookName='+${dushi.get(0).getBname()}}">[[${dushi.get(0).getBname()}]]</a></h4>
+                            <h5 th:text="${dushi.get(0).getTicket()+'月票'}">9099月票<br><a href="./fantasy.html"><i th:text="${dushi.get(0).getScore()}">仙侠</i></a>
+                                <h5>
+                        </td>
+                        <td colspan="1">
+                            <a th:href="@{'/read?id='+${dushi.get(0).getId()}+'&bookName='+${dushi.get(0).getBname()}}"><img th:src="${dushi.get(0).getImg()}" alt=""></a>
+                        </td>
+                        <td colspan="3">
+                            <h4>NO.1</h4>
+                            <h4 th:inline="text"><a th:href="@{'/read?id='+${lishi.get(0).getId()}+'&bookName='+${lishi.get(0).getBname()}}">[[${lishi.get(0).getBname()}]]</a></h4>
+                            <h5 th:text="${lishi.get(0).getTicket()+'月票'}">9099月票<br><a href="./fantasy.html"><i th:text="${lishi.get(0).getScore()}">仙侠</i></a>
+                                <h5>
+                        </td>
+                        <td colspan="1">
+                            <a th:href="@{'/read?id='+${lishi.get(0).getId()}+'&bookName='+${lishi.get(0).getBname()}}"><img th:src="${lishi.get(0).getImg()}" alt=""></a>
+                        </td>
+                    <!--  修仙  -->
+                        <td colspan="3">
+                            <h4>NO.1</h4>
+                            <h4 th:inline="text"><a th:href="@{'/read?id='+${xiuxian.get(0).getId()}+'&bookName='+${xiuxian.get(0).getBname()}}">[[${xiuxian.get(0).getBname()}]]</a></h4>
+                            <h5 th:text="${xiuxian.get(0).getTicket()}+'月票'">9099月票<br><a href="./fantasy.html"><i th:text="${xiuxian.get(0).getScore()}">仙侠</i></a>
+                                <h5>
+                        </td>
+                        <td colspan="1">
+                            <a th:href="@{'/read?id='+${xiuxian.get(0).getId()}+'&bookName='+${xiuxian.get(0).getBname()}}"><img th:src="${xiuxian.get(0).getImg()}" alt=""></a>
+                        </td>
+                        <!--    武侠榜        -->
+                        <td colspan="3">
+                            <h4>NO.1</h4>
+                            <h4 th:inline="text"><a th:href="@{'/read?id='+${wuxia.get(0).getId()}+'&bookName='+${wuxia.get(0).getBname()}}">[[${wuxia.get(0).getBname()}]]</a></h4>
+                            <h5 th:text="${wuxia.get(0).getTicket()}+'月票'">9099月票<br><a href="./fantasy.html"><i th:text="${wuxia.get(0).getScore()}">仙侠</i></a>
+                            <h5>
+                        </td>
+                        <td colspan="1">
+                            <a th:href="@{'/read?id='+${wuxia.get(0).getId()}+'&bookName='+${wuxia.get(0).getBname()}}"><img th:src="${wuxia.get(0).getImg()}" alt=""></a>
+                        </td>
+                    </tr>
+
+                    <!--NO2-->
+                    <tr class="NO2_" th:each="i:${#numbers.sequence(2,9)}">
+                        <td colspan="1">
+                            <h4 th:text="${i}">2</h4>
+                        </td>
+                        <td colspan="2">
+                            <h5 th:inline="text"><a th:href="@{'/read?id='+${xuanhuan.get(i).getId()}+'&bookName='+${xuanhuan.get(i).getBname()}}">[[${xuanhuan.get(i).getBname()}]]</a></h5>
+                        </td>
+                        <td colspan="1">
+                            <h4 th:text="${xuanhuan.get(i).getTicket()}"></h4>
+                        </td>
+
+                        <td colspan="1">
+                            <h4 th:text="${i}">2</h4>
+                        </td>
+                        <td colspan="2">
+                            <h5 th:inline="text"><a th:href="@{'/read?id='+${dushi.get(i).getId()}+'&bookName='+${dushi.get(i).getBname()}}">[[${dushi.get(i).getBname()}]]</a></h5>
+                        </td>
+                        <td colspan="1">
+                            <h4 th:text="${dushi.get(i).getTicket()}"></h4>
+                        </td>
+
+                        <td colspan="1">
+                            <h4 th:text="${i}">2</h4>
+                        </td>
+                        <td colspan="2">
+                            <h5 th:inline="text"><a th:href="@{'/read?id='+${lishi.get(i).getId()}+'&bookName='+${lishi.get(i).getBname()}}">[[${lishi.get(i).getBname()}]]</a></h5>
+                        </td>
+                        <td colspan="1">
+                            <h4 th:text="${lishi.get(i).getTicket()}"></h4>
+                        </td>
+
+
+                        <td colspan="1">
+                            <h4 th:text="${i}">2</h4>
+                        </td>
+                        <td colspan="2">
+                            <h5 th:inline="text"><a th:href="@{'/read?id='+${xiuxian.get(i).getId()}+'&bookName='+${xiuxian.get(1).getBname()}}">[[${xiuxian.get(i).getBname()}]]</a></h5>
+                        </td>
+                        <td colspan="1">
+                            <h4 th:text="${xiuxian.get(i).getTicket()}"></h4>
+                        </td>
+
+                        <td colspan="1">
+                            <h4 th:text="${i}">2</h4>
+                        </td>
+                        <td colspan="2">
+                            <h5 th:inline="text"><a th:href="@{'/read?id='+${wuxia.get(i).getId()}+'&bookName='+${wuxia.get(i).getBname()}}">[[${wuxia.get(i).getBname()}]]</a></h5>
+                        </td>
+                        <td colspan="1">
+                            <h4 th:text="${wuxia.get(i).getTicket()}"></h4>
+                        </td>
+                    </tr>
+
+                    <!--NO3-->
+
+                        <!--展开部分结束-->
+
+
+                </table>
+
+            </div>
+            <!--榜结束-->
+            <div class="unfold" id="unfold">
+                展开更多V
+            </div>
+
+            <!--ad位置-->
+            <div id="zhansi">
+                <div>
+                    <a href="./index.html">
+                        <img src="/images/logo4.gif" alt="">
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="rotete_header">
+                <h3>热门作品</h3>
+            </div>
+
+            <!--热门作品-->
+            <div class="ro">
+                <!--1-->
+                <!--最新作品-->
+                <div class="rote1">
+                    <div id="box29Main1" class="box">
+                        <ul id="box29Main1Ul">
+                            <li><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                        </ul>
+                        <div class="box29-clt1" id="box29_clt">
+                            <span class="box29-clt1-prev"><</span>
+                            <span class="box29-clt1-next">></span>
+                        </div>
+                    </div>
+                    <div class="brief">
+                        <div>
+                            <h4><a href="./read4.html">斗破苍穹</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+
+                    <div class="brief">
+                        <div>
+                            <h4><a href="./read4.html">武动乾坤</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rote1">
+                    <div id="box2Main1" class="box">
+                        <ul id="box2Main1Ul">
+                            <li><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                        </ul>
+                        <div class="box2-clt1" id="box2_clt">
+                            <span class="box2-clt1-prev"><</span>
+                            <span class="box2-clt1-next">></span>
+                        </div>
+                    </div>
+                    <div class="brief2">
+                        <div>
+                            <h4><a href="./read4.html" id="shuming">斗破苍穹</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+
+                    <div class="brief2">
+                        <div>
+                            <h4><a href="./read4.html">武动乾坤</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rote1">
+
+                    <div id="box3Main1" class="box">
+                        <ul id="box3Main1Ul">
+                            <li><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                        </ul>
+                        <div class="box3-clt1" id="box3_clt">
+                            <span class="box3-clt1-prev"><</span>
+                            <span class="box3-clt1-next">></span>
+                        </div>
+                    </div>
+                    <div class="brief3">
+                        <div>
+                            <h4><a href="">斗破苍穹</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+
+                    <div class="brief3">
+                        <div>
+                            <h4><a href="./read1.html">武动乾坤</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="rotete_header">
+                    <h3>最新作品</h3>
+                </div>
+
+                <div class="rote1">
+                    <div id="box4Main1" class="box">
+                        <ul id="box4Main1Ul">
+                            <li><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/魔道祖师.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                        </ul>
+                        <div class="box4-clt1" id="box4_clt">
+                            <span class="box4-clt1-prev"><</span>
+                            <span class="box4-clt1-next">></span>
+                        </div>
+                    </div>
+                    <div class="brief4">
+                        <div>
+                            <h4><a href="">斗破苍穹</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+
+                    <div class="brief4">
+                        <div>
+                            <h4><a href="">武动乾坤</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="rote1">
+                    <div id="box3Main5" class="box">
+                        <ul id="box3Main5Ul">
+                            <li><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                        </ul>
+                        <div class="box5-clt1" id="box5_clt">
+                            <span class="box5-clt1-prev"><</span>
+                            <span class="box5-clt1-next">></span>
+                        </div>
+                    </div>
+                    <div class="brief5">
+                        <div>
+                            <h4><a href="">斗破苍穹</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+
+                    <div class="brief5">
+                        <div>
+                            <h4><a href="">武动乾坤</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rote1">
+                    <div id="box3Main6" class="box">
+                        <ul id="box3Main6Ul">
+                            <li><img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></li>
+                            <li><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                        </ul>
+                        <div class="box6-clt1" id="box6_clt">
+                            <span class="box6-clt1-prev"><</span>
+                            <span class="box6-clt1-next">></span>
+                        </div>
+                    </div>
+                    <div class="brief6">
+                        <div>
+                            <h4><a href="">斗破苍穹</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+
+                    <div class="brief6">
+                        <div>
+                            <h4><a href="">武动乾坤</a></h4>
+                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <p>
+                                <b>19,455,033</b>
+                                <span>人气</span>
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a href="">书籍详情</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!--最新作品结束-->
+            </div>
+
+            <!--热门作品结束-->
+            <!--ad位置-->
+            <div>
+                <div>
+                    <a href=" ./index.html "><img src=" /images/logo4.gif " alt=" "></a>
+                </div>
+            </div>
+
+            <div id="mianfei" class="exempt">
+
+                <div>
+                    <p>免费倒计时</p>
+                    <p><a class=" grade " href=" ./read.html ">如倾如诉<em>-</em>8.9分</a></p>
+                    <img src=" /images/彼岸/倒计时.jpg " alt=" 倒计时 ">
+                    <p>
+                        <i class="day "></i>
+                    </p>
+                    <p>
+                        <a href=" ./read.html "></a>进入频道>></a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <a href=" ./read.html "><img src=" images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg "></a>
+                    </p>
+                    <a href=" ./read.html ">
+                        <p>我在诸夏当大王</p>
+                    </a>
+                    <s>5起点币⁄千字</s>
+                    <p>免费阅读</p>
+                </div>
+                <div>
+                    <p><img src=" images/彼岸/云梦.jpg "></p>
+                    <a href=" ./read.html ">
+                        <p>我在诸夏当大王</p>
+                    </a>
+                    <s>5起点币⁄千字</s>
+                    <p>免费阅读</p>
+                </div>
+                <div>
+                    <p>
+                        <a href=" ./read.html "><img src=" images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg "></a>
+                    </p>
+                    <a href=" ./read.html ">
+                        <p>我在诸夏当大王</p>
+                    </a>
+                    <s>5起点币⁄千字</s>
+                    <p>免费阅读</p>
+                </div>
+                <div>
+                    <p>
+                        <a href=" ./read.html "><img src=" images/彼岸/男孩 ǽֽ 梦想 月亮 云 船 飞行 4K壁纸_彼岸图网.jpg "></a>
+                    </p>
+                    <a href=" ./read.html ">
+                        <p>我在诸夏当大王</p>
+                    </a>
+                    <s>5起点币⁄千字</s>
+                    <p>免费阅读</p>
+                </div>
+                <div>
+                    <p>
+                        <a href=" ./read.html "><img src=" images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg "></a>
+                    </p>
+                    <a href=" ./read.html ">
+                        <p>我在诸夏当大王</p>
+                    </a>
+                    <s>5起点币⁄千字</s>
+                    <p>免费阅读</p>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <!--center部分结束-->
+    <!--button部分-->
+    <div class=" bottom" th:fragment="bottom">
+        <div class=" bottom_se ">
+            <div>
+                <p>没有找到？试试这里</p>
+            </div>
+            <div>
+                <select name=" " id=" ">
+                    <option value=" volvo ">玄幻</option>
+                    <option value=" saab ">武侠</option>
+                    <option value=" opel ">探案</option>
+                    <option value=" audi ">恐怖</option>
+                </select>
+                <select name=" " id=" ">
+                    <option value=" volvo ">连载</option>
+                    <option value=" saab ">Saab</option>
+                    <option value=" opel ">Opel</option>
+                    <option value=" audi ">Audi</option>
+                </select>
+                <select name=" " id=" ">
+                    <option value=" volvo ">免费</option>
+                    <option value=" saab ">Saab</option>
+                    <option value=" opel ">Opel</option>
+                    <option value=" audi ">Audi</option>
+                </select>
+                <select name=" " id=" ">
+                    <option value=" volvo ">两百万以上</option>
+                    <option value=" saab ">Saab</option>
+                    <option value=" opel ">Opel</option>
+                    <option value=" audi ">Audi</option>
+                </select>
+                <select name=" " id=" ">
+                    <option value=" volvo ">全部</option>
+                    <option value=" saab ">Saab</option>
+                    <option value=" opel ">Opel</option>
+                    <option value=" audi ">Audi</option>
+                </select>
+                <input type="submit" value="查找">
+            </div>
+            <div>
+                热门搜索：
+                <a href=" ./read.html ">魔道祖师</a>
+                <a href=" ./read.html ">斗破</a>
+                <a href=" ./read.html ">迪迦</a>
+                <a href=" ./read.html ">盗墓笔记</a>
+                <a href=" ./read.html ">陈情令</a>
+            </div>
+        </div>
+        <div class=" hint ">
+            <div>
+                <p>湖南网警提示：网络刷单是违法 切莫轻信有返利，网上交友套路多 卖惨要钱需当心，电子红包莫轻点 个人信息勿填写， 仿冒客服来行骗 官方核实最重要，招工诈骗有套路 预交费用需谨慎，低价充值莫轻信 莫因游戏陷套路，连接WIFI要规范 确认安全再连接，抢购车票有章法 确认订单再付款， 白条赊购慎使用 提升额度莫轻信，网购预付有风险 正规渠道很重要 如网民接到962110电话， 请立即接听。
+                </p>
+            </div>
+            <div>
+                <p>湖南黄金书屋公司</p>
+                <p>联系方式: 191250----@qq.com</p>
+                <p>电话1507485----</p>
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class=" cop ">
+            <img src="/images/彼岸/136126fa5b24d51f7ef99b6b73d55fce.jpg" alt=" ">
+            <img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=" ">
+            <img src="/images/彼岸/云梦.jpg" alt=" ">
+            <img src="/images/彼岸/倒计时.jpg" alt=" ">
+            <img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=" ">
+            <img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=" ">
+            <div>
+                <form action=" # ">
+                    <input type="text"><input type="submit" value="搜索">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--button部分结束-->
+
+    <!--solid悬浮窗部分-->
+
+
+
+    <!--阴影层-->
+    <div class="mask" id="mask"></div>
+
+    <!--solid悬浮窗部分结束-->
+
+    <!--置顶按钮-->
+    <div class="stick" id="stick">
+
+        <button>返<br>回<br>顶<br>部</button>
+
+    </div>
+</body>
+<script src="/js/solid.js "></script>
+<script src="/js/rote.js"></script>
+
+
+
+
+</html>

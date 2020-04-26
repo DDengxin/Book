@@ -1,0 +1,116 @@
+.bottom {
+    width: 1200px;
+    height: 700px;
+    margin: 10px auto;
+}
+
+.bottom_se {
+    width: 1518px;
+    height: 90px;
+    margin: 10px -160px;
+    background-color: #f2f2f2;
+}
+
+.bottom_se div {
+    float: left;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.bottom select {
+    outline: medium;
+    cursor: pointer;
+    width: 92px;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 13px;
+    background: white;
+}
+
+.bottom select option {
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.bottom select:hover {
+    border: 1px solid black;
+}
+
+.bottom input {
+    width: 92px;
+    height: 40px;
+    background: #bf2c24;
+    color: white;
+    outline: medium;
+}
+
+.bottom_se div:nth-child(1) {
+    margin-left: 160px;
+}
+
+.bottom_se div:nth-child(3) {
+    border-left: 1px solid black;
+    padding: 9px 10px;
+    height: 20px;
+}
+
+.bottom_se div:nth-child(3) a {
+    color: black;
+}
+
+.hint div:nth-child(1) {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.hint div:nth-child(2) {
+    width: 1200px;
+    height: 100px;
+}
+
+.hint div:nth-child(2) p:nth-child(1),
+.hint div:nth-child(2) p:nth-child(3) {
+    margin: 20px 500px;
+}
+
+.hint div:nth-child(2) p:nth-child(2) {
+    width: 270px;
+    margin: 20px 450px;
+}
+
+.cop {
+    margin: 30px auto;
+    width: 841px;
+    height: 300px;
+}
+
+.cop img {
+    float: left;
+    width: 120px;
+    height: 100px;
+    margin-left: 20px;
+}
+
+.cop input {
+    float: left;
+    height: 30px;
+    background-color: white;
+    margin-top: 100px;
+}
+
+.cop input:nth-child(1) {
+    width: 300px;
+    margin-left: 220px;
+    border: 2px solid black;
+}
+
+.cop input:nth-child(2) {
+    width: 80px;
+    height: 34px;
+    background: black;
+    color: white;
+}

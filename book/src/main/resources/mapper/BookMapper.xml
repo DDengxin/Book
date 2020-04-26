@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.book.mapper.BookMapper">
+    <select id="getAllBook" resultType="BookInfo">
+        select * from book_info
+    </select>
+
+    <select id="getBookId" parameterType="int" resultType="BookInfo">
+        select * from book_info where id=#{id}
+    </select>
+
+
+<select id="getTitle" resultType="BookContent" parameterType="String">
+select title,tid,bname from book_content where bname=#{bookName}
+</select>
+
+
+<select id="getContent" resultType="BookContent" parameterType="String">
+    select content,title,bname,tid,book_id from book_content where bname = #{bookName} and tid=#{tid}
+
+</select>
+    <select id="getDescAllBook" resultType="BookInfo">
+    select * from book_info order by ticket desc;
+</select>
+
+    <select id="getDescTypeBook" resultType="BookInfo" parameterType="String">
+    select * from book_info where type=#{type} order by ticket desc;
+</select>
+
+
+
+
+    <!--    <select id="getContent" resultMap="BookName" parameterType="String">-->
+    <!--        select c.*,i.bname bname from book_content c,book_info i where c.name=i.bname;-->
+    <!--    </select>-->
+    <!--    <resultMap id="BookName" type="BookContent">-->
+    <!--        <result property="title"></result> &lt;!&ndash; property为实体类字段，columns为Mapper接口中传来的参数名&ndash;&gt;-->
+    <!--    </resultMap>-->
+
+
+</mapper>
+

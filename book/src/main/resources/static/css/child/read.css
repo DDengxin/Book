@@ -1,0 +1,200 @@
+body,
+html {
+    margin: 0;
+    border: 0;
+}
+
+.head {
+    width: 1200px;
+    height: 100px;
+    margin: 0px auto;
+    /*border-radius: 15px;*/
+}
+
+.head div {
+    margin-top: 10px;
+    float: left;
+}
+
+.head div:nth-child(1) {
+    width: 950px;
+}
+
+.head div:nth-child(2) {
+    width: 250px;
+}
+
+.head li {
+    color: black;
+    list-style: none;
+    float: left;
+    margin: 5px 10px 0px 0px;
+}
+
+.head li:hover {
+    color: brown;
+}
+
+.center {
+    width: 1200px;
+    height: 450px;
+    margin: 40px auto;
+}
+
+.center li {
+    list-style: none;
+}
+
+.center a {
+    text-decoration: none;
+    color: black;
+}
+
+.bookname {
+    width: 1200px;
+    height: 40px;
+}
+
+.bookname i {
+    font-size: 12px;
+    font-style: normal;
+    font-family: "宋体";
+}
+
+.bookname b {
+    font-weight: normal;
+    padding-right: 15px;
+    color: #900;
+    font: bold;
+    font-size: 25px;
+}
+
+.nav {
+    width: 1200px;
+    height: 50px;
+    margin: -9px auto;
+    border: 1px solid #c1c1c1;
+    background: #f9f9f9;
+}
+
+.nav div {
+    float: left;
+}
+
+.navleft li {
+    float: left;
+    padding: 14px 15px;
+}
+
+.navleft li:hover {
+    padding: 15px 15px;
+    color: #900
+}
+
+hr {
+    height: 3px;
+    color: #006600;
+    background: #006600;
+}
+
+.book {
+    width: 1200px;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.book div {
+    float: left;
+}
+
+.book img {
+    width: 230px;
+    height: 300px;
+}
+
+.bookleft {
+    width: 300px;
+    height: 350px;
+    /*background: #f9f9f9;*/
+}
+
+.bookleft img {
+    margin: 20px 30px;
+}
+
+.bookright {
+    width: 800px;
+}
+
+.bookright a {
+    font: 14px/38px PingFangSC-Regular, '-apple-system', Simsun;
+    margin-left: 10px;
+}
+
+.bookright i {
+    font: 12px/18px PingFangSC-Regular, '-apple-system', Simsun;
+    border: 1px solid #2972cc;
+    border-radius: 2px;
+    color: #2972cc;
+}
+
+.bookright em {
+    margin-left: 10px;
+    font: 12px/20px PingFangSC-Regular, '-apple-system', Simsun;
+}
+
+#briefing {
+    font: 14px/24px PingFangSC-Regular, '-apple-system', Simsun;
+}
+
+.read {
+    margin-top: 40px;
+}
+
+.read a {
+    font: 14px/34px PingFangSC-Regular, '-apple-system', Simsun;
+    display: inline-block;
+    width: 120px;
+    height: 34px;
+    margin-right: 20px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+.read a:nth-child(1) {
+    background: #ff3955;
+    color: white;
+}
+
+.read a:nth-child(1) {
+    background: #ff5269;
+}
+
+.read a:nth-child(2) {
+    border: 1px solid #ff3955;
+    color: #ff3955;
+}
+
+.read a:nth-child(2):hover {
+    background: #ffeaed;
+}
+
+.section li {
+    width: 150px;
+    float: left;
+    margin-right: 235px;
+    font: 14px/40px PingFangSC-Regular, '-apple-system', Simsun;
+}
+
+.section a:hover {
+    color: #900;
+}
+
+#unfold {
+    margin: 10px auto;
+    text-align: center;
+    width: 1200px;
+    height: 30px;
+}

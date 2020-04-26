@@ -1,0 +1,102 @@
+iframe {
+    width: 1200px;
+    height: 200px;
+    margin: 0px auto;
+}
+
+.head {
+    width: 1200px;
+    height: 178px;
+    margin: 10px auto;
+}
+
+.head a:hover {
+    color: brown;
+}
+
+.head_nav {
+    width: 1200px;
+    height: 32px;
+    float: left;
+    background-color: white;
+}
+
+.head_nav li {
+    float: left;
+    list-style: none;
+    margin: 2px 5px;
+    border: 0px;
+}
+
+.head_nav a {
+    text-decoration: none;
+    color: black;
+    border: 0px;
+}
+
+.login {
+    margin: auto 5px;
+    float: right;
+    border: 0px;
+}
+
+.head_ad {
+    height: 90px;
+    width: 1200px;
+}
+
+.head_ad img {
+    width: 1200px;
+    height: 50px;
+}
+
+.head_se div {
+    float: left;
+}
+
+.head_se {
+    width: 1200px;
+    height: 100px;
+}
+
+.put {
+    height: 30px;
+    width: 335px;
+    margin: 19px 180px;
+    border: 2px solid black;
+}
+
+.put input {
+    height: 21px;
+    width: 258px;
+    outline: medium;
+    font-size: 18px;
+    padding: 4px;
+}
+
+.put button {
+    color: aliceblue;
+    width: 65px;
+    height: 30px;
+    background-color: black;
+    float: right;
+    border: 0px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.book {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #9b9b9b;
+    margin: 19px 0px;
+    margin-left: 199px;
+}
+
+.book a {
+    color: black;
+    width: 50px;
+    height: 20px;
+    padding: 10px 15px;
+    text-decoration: none;
+}
