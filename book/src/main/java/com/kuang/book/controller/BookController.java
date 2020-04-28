@@ -5,7 +5,6 @@ import com.kuang.book.entiy.BookContent;
 import com.kuang.book.entiy.BookInfo;
 import com.kuang.book.mapper.BookMapper;
 import com.kuang.book.service.BookService;
-import com.kuang.book.utils.RedisFindUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BookController {
@@ -30,19 +30,25 @@ public class BookController {
 
     @GetMapping("/index")
     public String index(Model model) {
-        List<BookInfo> allBook = RedisFindUtil.getAllBook();
-        //分类排行
-        List<BookInfo> xuanhuan = RedisFindUtil.getDescTypeBook("玄幻","xh");
-        List<BookInfo> wuxia = RedisFindUtil.getDescTypeBook("武侠","wx");
-        List<BookInfo> lishi = RedisFindUtil.getDescTypeBook("历史","ls");
-        List<BookInfo> xiuxian = RedisFindUtil.getDescTypeBook("修仙","xx");
-        List<BookInfo> dushi = RedisFindUtil.getDescTypeBook("都市","ds");
-        model.addAttribute("xuanhuan", xuanhuan);
-        model.addAttribute("wuxia", wuxia);
-        model.addAttribute("lishi", lishi);
-        model.addAttribute("xiuxian", xiuxian);
-        model.addAttribute("dushi", dushi);
-        model.addAttribute("books", allBook);
+        HashMap<String, List<BookInfo>> descTypeBook;
+        List<BookInfo> AllBook = bookMapper.getAllBook();
+
+        if (redisTemplate.opsForHash().entries("descBook").get(0)!=null){
+            descTypeBook = (HashMap<String, List<BookInfo>>) redisTemplate.opsForHash().values("descBook");
+        }else {
+            descTypeBook = bookService.getDescAllType();
+        }
+
+        if (redisTemplate.opsForValue().get("AllBook")==null){
+            AllBook = bookMapper.getAllBook();
+            redisTemplate.opsForValue().set("AllBook",AllBook);
+        }
+        model.addAttribute("xuanhuan", descTypeBook.get("玄幻"));
+        model.addAttribute("wuxia", descTypeBook.get("武侠"));
+        model.addAttribute("lishi", descTypeBook.get("历史"));
+        model.addAttribute("xiuxian",descTypeBook.get("修仙"));
+        model.addAttribute("dushi", descTypeBook.get("都市"));
+        model.addAttribute("books", AllBook);
         return "index";
     }
 
@@ -52,7 +58,7 @@ public class BookController {
         String bookName = request.getParameter("bookName");
         BookInfo currenBook = bookMapper.getBookId(id); //获取info对象
         List<BookContent> bookTitleItem = bookMapper.getTitle(bookName); //获取所有content对象
-        HashMap viewCount = bookService.getViewCount(id);
+        Integer viewCount = bookService.getViewCount(id);
         model.addAttribute("viewCount",viewCount);//?
         model.addAttribute("bookInfo", currenBook);
         model.addAttribute("bookContentItem", bookTitleItem);
@@ -78,9 +84,15 @@ public class BookController {
     @GetMapping("sortBook")
     public String bookSort(HttpServletRequest request,Model model){
         String type = request.getParameter("type");
+        int page =0;
         List<BookInfo> scoreBook = bookMapper.getScoreBook(type);
+        for (int size=scoreBook.size();size>0;){
+            size-=4;
+            page+=1;
+        }
+
         model.addAttribute("scoreBook",scoreBook);
-        System.out.println(scoreBook.get(0).getBname());
+        model.addAttribute("page",page);
         return "sort_book";
     }
 }

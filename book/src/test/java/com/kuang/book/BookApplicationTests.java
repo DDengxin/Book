@@ -61,35 +61,28 @@ public class BookApplicationTests  {
     @Test
     public void add(){
         for (int i=0;i<50;i++){
-            redisTemplate.opsForValue().set("viewCount:id:"+i,0);
-
-
-
+            redisTemplate.opsForHash().put("viewCount","viewCount:id:"+i,0);
+            System.out.println(redisTemplate.opsForHash().values("viewCount").get(i));
         }
-        Set users = redisTemplate.opsForZSet().reverseRangeByScoreWithScores("monthTicket", 0, 10000000);
-        //变量set集合
-        Iterator<ZSetOperations.TypedTuple<String>> iterator =users.iterator();
-        while (iterator.hasNext()){
-            ZSetOperations.TypedTuple<String> typedTuple = iterator.next();
-            Object value = typedTuple.getValue();
-            double score = typedTuple.getScore();
-            int scores = (int)score;
-            System.out.println("获取RedisZSetCommands.Tuples的区间值:" + value + "---->" + scores );
-        }
+
+
+//        Set users = redisTemplate.opsForZSet().reverseRangeByScoreWithScores("monthTicket", 0, 10000000);
+//        //变量set集合
+//        Iterator<ZSetOperations.TypedTuple<String>> iterator =users.iterator();
+//        while (iterator.hasNext()){
+//            ZSetOperations.TypedTuple<String> typedTuple = iterator.next();
+//            Object value = typedTuple.getValue();
+//            double score = typedTuple.getScore();
+//            int scores = (int)score;
+//            System.out.println("获取RedisZSetCommands.Tuples的区间值:" + value + "---->" + scores );
+//        }
 
     }
 // 分类测试
 @Test
     public void test2(){
 
-    List<BookInfo> AllBook = bookMapper.getAllBook();
-
-//    for (int i=0;i<descAllBook.size();i++){
-//        System.out.println(descAllBook.get(i).getBname());
-//    }
-    redisTemplate.opsForValue().set("AllBook",AllBook);
-    List<BookInfo> allBook = (List<BookInfo>) redisTemplate.opsForValue().get("AllBook");
-    System.out.println(allBook.get(0).getBname());
-
+    System.out.println(redisTemplate.opsForHash().entries("sb").get(0));
+    }
 }
-}
+
