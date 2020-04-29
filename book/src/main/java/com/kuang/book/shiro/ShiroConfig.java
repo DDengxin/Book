@@ -27,7 +27,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/logout","authc");
         bean.setLoginUrl("/login");
         //权限
-        filterChainDefinitionMap.put("/register","perms[superUser]");
+//        filterChainDefinitionMap.put("/register","perms[superUser]");
         bean.setUnauthorizedUrl("/unauth");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;

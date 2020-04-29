@@ -68,4 +68,25 @@ public class BookServiceImpl implements BookService {
         redisTemplate.opsForHash().put("descBook","dushi",ds);
         return map;
     }
+
+    @Override
+    public List<BookInfo> getPageBook(String type,int page) {
+        HashMap map = new HashMap<>();
+        List<BookInfo> pageBook;
+        int count = 4;
+        if (page == 1) {
+            map.put("type",type);
+            map.put("count",0);
+            pageBook = bookMapper.getPageBook(map);
+        } else if (page == 2) {
+            map.put("type",type);
+            map.put("count",count);
+            pageBook= bookMapper.getPageBook(map);
+        } else {
+            map.put("type",type);
+            map.put("count",(page-2)*count+count);
+            pageBook = bookMapper.getPageBook(map);
+        }
+       return pageBook;
+    }
 }

@@ -33,6 +33,10 @@ select title,tid,bname from book_content where bname=#{bookName}
     select * from book_info where type=#{type} order by score desc;
 </select>
 
+<select id="getPageBook" resultType="BookInfo" parameterType="map">
+    select * from book_info where type=#{type} limit #{count},4
+</select>
+
 
 
 

@@ -60,10 +60,10 @@
 
 
                         <input id="putdiv" autocomplete="off" type="text">
-                    <button>搜索</button>
+                    <button style="display: block;">搜索</button>
                     </form>
                 </div>
-                <div class="book"><a href="/selfInfo">我的书架</a></div>
+                <div class="book"><a href="/selfInfo" style="border: #b3d7ff solid">我的书架</a></div>
             </div>
         </div>
         <!--head部分结束-->
@@ -380,7 +380,7 @@
                         <li th:each="book:${books}"th:if="${book.getId()}>20 and ${book.getId()}<33">
                             <a th:text="'['+${book.getType()}+']'"></a>
                             <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}" th:text="${book.getBname()}">三体</a>
-                            <em><a href="/read.html" th:text="${book.getAuthor()}">刘慈溪</a></em>
+                            <em><a th:text="${book.getAuthor()}">刘慈溪</a></em>
                         </li>
                     </ul>
 
@@ -389,7 +389,7 @@
                     <p>编辑推荐</p>
                     <div id="redact" class="redact">
                         <div th:each="book:${books}" th:if="${book.getId()<=5}">
-                            <img src="" th:src="${book.getImg()}">
+                            <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}"><img src="" th:src="${book.getImg()}"></a>
                             <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}" th:text="${book.getBname()}">三体</a>
                             <h4 class="reh4" th:text="${book.getDescription()}">
                             </h4>
@@ -403,7 +403,7 @@
                         <li th:each="book:${books}" th:if="${book.getId()}<=12">
                             <a th:text="'['+${book.getType()}+']'"></a>
                             <a th:href="@{'/read?id='+${book.getId()}+'&bookName='+${book.getBname()}}" th:text="${book.getBname()}">三体</a>
-                            <em><a href="/read.html" th:text="${book.getAuthor()}">刘慈溪</a></em>
+                            <em><a th:text="${book.getAuthor()}">刘慈溪</a></em>
                         </li>
                     </ul>
                 </div>
@@ -591,8 +591,8 @@
                     </div>
                     <div class="brief">
                         <div>
-                            <h4><a href="./read4.html">斗破苍穹</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+<!--                            <h4><a href="./read4.html">斗破苍穹</a></h4>-->
+<!--                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>-->
                             <p>
                                 <b>19,455,033</b>
                                 <span>人气</span>

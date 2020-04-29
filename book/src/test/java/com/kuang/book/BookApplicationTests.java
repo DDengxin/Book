@@ -82,7 +82,7 @@ public class BookApplicationTests  {
 @Test
     public void test2(){
 
-    System.out.println(redisTemplate.opsForHash().entries("sb").get(0));
+    System.out.println((3-1)*2);
     }
 }
 

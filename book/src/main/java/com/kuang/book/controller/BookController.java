@@ -84,15 +84,24 @@ public class BookController {
     @GetMapping("sortBook")
     public String bookSort(HttpServletRequest request,Model model){
         String type = request.getParameter("type");
-        int page =0;
+        String spage = request.getParameter("page");
+        if(spage==null){
+            spage="1";
+        }
+        int page = Integer.parseInt(spage);
+        int count =0;
+        //获取底部的页码
         List<BookInfo> scoreBook = bookMapper.getScoreBook(type);
         for (int size=scoreBook.size();size>0;){
             size-=4;
-            page+=1;
+            count+=1;
         }
-
+        //获取分页后的内容
+        List<BookInfo> pageBook = bookService.getPageBook(type, page);
+        model.addAttribute("pageBook",pageBook);
+        System.out.println(pageBook.size());
         model.addAttribute("scoreBook",scoreBook);
-        model.addAttribute("page",page);
+        model.addAttribute("page",count);
         return "sort_book";
     }
 }

@@ -88,7 +88,7 @@ iframe {
 .book {
     width: 100px;
     height: 30px;
-    border: 1px solid #9b9b9b;
+    /*border: 1px solid #9b9b9b;*/
     margin: 19px 0px;
     margin-left: 199px;
 }
