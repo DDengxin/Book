@@ -55,7 +55,7 @@ window.onload = function() {
     // 第一步：点击任何地方都触发事件
     document.onclick = function() {
 
-        putsolid.style.display = 'none'
+        // putsolid.style.display = 'none'
 
     }
 

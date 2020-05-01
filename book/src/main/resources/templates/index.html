@@ -63,7 +63,7 @@
                     <button style="display: block;">搜索</button>
                     </form>
                 </div>
-                <div class="book"><a href="/selfInfo" style="border: #b3d7ff solid">我的书架</a></div>
+                <div class="book"><a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}" style="border: #b3d7ff solid">我的书架</a></div>
             </div>
         </div>
         <!--head部分结束-->

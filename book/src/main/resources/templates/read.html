@@ -76,8 +76,10 @@
                 </p>
                 <p class="read">
                     <a th:href="@{'/content?id=1&bookName='+${bookInfo.getBname()}}">免费试读</a>
-                    <a href="#">加入书架</a>
+                    <a th:href="@{'/read?id='+${bookInfo.getId()}+'&uid='+${session.uid}+'&bookName='+${bookInfo.getBname()}}"> 加入书架</a>
+                    <a style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></a>
                 </p>
+
             </div>
 
         </div>

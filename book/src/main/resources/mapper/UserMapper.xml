@@ -3,8 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.book.mapper.UserMapper">
     <select id="getUser" resultType="BookUsers" parameterType="String">
-        select * from users where username = #{i}
+        select * from users where email = #{email};
     </select>
+
+    <insert id="addUser" parameterType="String">
+        insert into users(email,password,username) values (#{email},#{password},#{username})
+    </insert>
 
 </mapper>
 

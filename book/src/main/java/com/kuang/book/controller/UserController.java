@@ -1,8 +1,10 @@
 package com.kuang.book.controller;
 
 import com.kuang.book.entiy.BookUsers;
+import com.kuang.book.mapper.BookMapper;
 import com.kuang.book.mapper.UserMapper;
 import com.kuang.book.service.BookService;
+import com.kuang.book.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 
 @Controller
@@ -25,7 +29,10 @@ public class UserController {
     UserMapper userMapper;
 
     @Autowired
-    BookService userService;
+    UserService userService;
+
+    @Autowired
+    BookMapper bookMapper;
 
 
     @GetMapping("/test")
@@ -50,10 +57,7 @@ public class UserController {
         return "register";
     }
 
-    @GetMapping("/selfInfo")
-    public String selfInfo(HttpSession session){
-        return "self_info";
-    }
+
 
     @GetMapping("/unauth")
     @ResponseBody
@@ -63,19 +67,21 @@ public class UserController {
 
 
     @PostMapping("/userSign")
-    public String userSign(@RequestParam String username,
+    public String userSign(@RequestParam String email,
                         @RequestParam String password,
                         Model model,
                         HttpSession session) {
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
         //封装用户的登录数据
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(email,password);
         try {
             //执行登录方法，会调用doGetAuthenticationInfo认证方法,如果不存在异常就说明登录成功了
             subject.login(token);
-            BookUsers user = userMapper.getUser(username);
-            session.setAttribute("username",username);
+//            BookUsers user = userMapper.getUser(username);
+            BookUsers user = userService.userLogin(email);
+            session.setAttribute("uid",user.getId());
+            session.setAttribute("username",user.getUsername());
             session.setAttribute("email",user.getEmail());
             if (user.getAuth()==1){
                 session.setAttribute("auth","超级用户");
@@ -93,7 +99,30 @@ public class UserController {
     }
 
     @PostMapping("/userRegister")
-    public String userRegister(){
-        return null;
+    public String userRegister(@RequestParam String email,
+                               @RequestParam String password,
+                               @RequestParam String username,
+                                Model model) {
+        HashMap<String,String> map = userService.userRegister(email, password, username);
+        String msg = map.get("msg");
+
+        if (msg.equals("邮箱已被注册")){
+            model.addAttribute("msg",msg);
+            return "register";
+        }
+        else if (msg.equals("用户名已存在")){
+            model.addAttribute("msg",msg);
+            return "register";
+        }
+        else if (msg.equals("注册成功")){
+            model.addAttribute("msg",msg);
+            return "register";
+
+        }
+        else {
+            return "服务器内部错误";
+        }
+
+        }
     }
-}
+

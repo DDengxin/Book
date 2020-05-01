@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 @Service
@@ -88,5 +89,36 @@ public class BookServiceImpl implements BookService {
             pageBook = bookMapper.getPageBook(map);
         }
        return pageBook;
+    }
+
+    @Override
+    public Boolean addCollectionBook(String uid, String bid){
+            try {
+                bookMapper.userAddBook(uid, bid);
+                return true;
+            }catch (Exception e){
+                return false;
+            }
+    }
+
+    @Override
+    public List<BookInfo> getCollectionBook(String uid, int page) {
+        HashMap map = new HashMap<>();
+        List<BookInfo> pageBook;
+        int count = 6;
+        if (page == 1) {
+            map.put("uid",uid);
+            map.put("count",0);
+            pageBook = bookMapper.getCollectionBook(map);
+        } else if (page == 2) {
+            map.put("uid",uid);
+            map.put("count",count);
+            pageBook = bookMapper.getCollectionBook(map);
+        } else {
+            map.put("uid",uid);
+            map.put("count",(page-2)*count+count);
+            pageBook = bookMapper.getCollectionBook(map);
+        }
+        return pageBook;
     }
 }

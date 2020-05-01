@@ -37,16 +37,20 @@ select title,tid,bname from book_content where bname=#{bookName}
     select * from book_info where type=#{type} limit #{count},4
 </select>
 
+<insert id="userAddBook" parameterType="String">
+    insert into user_collection_book values (#{uid},#{bid})
+</insert>
+
+<select id="getCollectionCount" parameterType="String" resultType="int">
+    select count(*) from user_collection_book where uid=#{uid}
+</select>
+
+<select id="getCollectionBook" parameterType="map" resultType="BookInfo">
+     select bname,author,id,img from user_collection_book u,book_info b where u.bid=b.id and u.uid=#{uid} limit #{count},6;
+</select>
 
 
 
-
-    <!--    <select id="getContent" resultMap="BookName" parameterType="String">-->
-    <!--        select c.*,i.bname bname from book_content c,book_info i where c.name=i.bname;-->
-    <!--    </select>-->
-    <!--    <resultMap id="BookName" type="BookContent">-->
-    <!--        <result property="title"></result> &lt;!&ndash; property为实体类字段，columns为Mapper接口中传来的参数名&ndash;&gt;-->
-    <!--    </resultMap>-->
 
 
 </mapper>

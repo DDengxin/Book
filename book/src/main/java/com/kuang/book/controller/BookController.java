@@ -56,10 +56,23 @@ public class BookController {
     public String read(HttpServletRequest request, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         String bookName = request.getParameter("bookName");
-        BookInfo currenBook = bookMapper.getBookId(id); //获取info对象
-        List<BookContent> bookTitleItem = bookMapper.getTitle(bookName); //获取所有content对象
-        Integer viewCount = bookService.getViewCount(id);
-        model.addAttribute("viewCount",viewCount);//?
+        //如果用户点击了收藏按钮
+        if (request.getParameter("uid")!=null){
+            if (request.getParameter("uid").equals("null")){
+                return "login";
+            }
+            Boolean aBoolean = bookService.addCollectionBook(request.getParameter("uid"), request.getParameter("id"));
+            if (aBoolean==true){
+                model.addAttribute("msg","添加成功");
+            }else {
+                model.addAttribute("msg","该书籍已存在");
+            }
+        }
+
+        BookInfo currenBook = bookMapper.getBookId(id); //获取当前用户点击的书籍
+        List<BookContent> bookTitleItem = bookMapper.getTitle(bookName); //遍历当前页面所有的标题
+        Integer viewCount = bookService.getViewCount(id);//每次访问浏览量+1
+        model.addAttribute("viewCount",viewCount);
         model.addAttribute("bookInfo", currenBook);
         model.addAttribute("bookContentItem", bookTitleItem);
         return "read";
@@ -103,6 +116,28 @@ public class BookController {
         model.addAttribute("scoreBook",scoreBook);
         model.addAttribute("page",count);
         return "sort_book";
+    }
+
+    @GetMapping("/selfInfo")
+    public String selfInfo(HttpServletRequest request,Model model){
+        //获取用户当前页的所有书籍
+        String spage = request.getParameter("page");
+        int page = Integer.parseInt(spage);
+        String uid = request.getParameter("uid");//获取当前用户
+        List<BookInfo> books = bookService.getCollectionBook(uid, page); //返回分页后的集合对象
+
+
+        //通过用户书籍的数量，来判断底部共有多少页
+        int bookCount = bookMapper.getCollectionCount(uid);
+        int count=0;//页面底部的页码数量
+        for (int size = bookCount;size>0;){
+            size-=6;
+            count+=1;
+        }
+        model.addAttribute("page",count);
+        model.addAttribute("books",books);
+
+        return "self_info";
     }
 }
 

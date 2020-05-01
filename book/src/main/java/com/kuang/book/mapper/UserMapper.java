@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UserMapper {
-    BookUsers getUser(String username);
-    int addUser();
+    BookUsers getUser(String email);
+
+    int addUser(String email,String password,String username);
+
+
 }

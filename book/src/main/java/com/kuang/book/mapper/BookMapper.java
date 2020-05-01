@@ -22,7 +22,14 @@ public interface BookMapper {
    List<BookInfo> getDescAllBook();
    //获取按类型的评分大小
    List<BookInfo> getScoreBook(String type);
-
    List<BookInfo> getPageBook(HashMap map);
 
+   //书籍加入用户收藏
+   int userAddBook(String  uid,String bid);
+
+   //获取用户收藏书籍的数量
+   int getCollectionCount(String uid);
+
+   //获取用户收藏的书籍
+   List<BookInfo> getCollectionBook(HashMap map);
 }

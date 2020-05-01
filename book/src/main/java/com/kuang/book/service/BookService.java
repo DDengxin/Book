@@ -11,9 +11,13 @@ public interface BookService {
     Integer getViewCount(int id);
     //获取所有书籍分类排行
     HashMap<String,List<BookInfo>> getDescAllType();
-    //获取分页后的书籍
+    //评分书籍分页
     List<BookInfo> getPageBook(String type,int page);
 
+    //添加用户书籍收藏
+    Boolean addCollectionBook(String uid,String bid);
 
+    //用户收藏书籍分页显示
+    List<BookInfo> getCollectionBook(String uid,int page);
 
 }

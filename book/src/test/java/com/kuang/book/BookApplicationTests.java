@@ -81,8 +81,12 @@ public class BookApplicationTests  {
 // 分类测试
 @Test
     public void test2(){
+        String xx = "RMB：2152.00";
+    int i = xx.indexOf("B");
+    String substring = xx.substring(i).replace("B","").replace("：","");
+    System.out.println(substring);
 
-    System.out.println((3-1)*2);
-    }
+
+}
 }
 
