@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<!-- Meta tag Keywords -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Meta tag Keywords -->
+<!-- css files -->
+<link href="/book/css/style1.css" rel="stylesheet" type="text/css" media="all">
+<link href="/book/css/font-awesome.min1.css" rel="stylesheet" type="text/css" media="all">
+<!-- online-fonts -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<!--//online-fonts -->
+<body>
+<div class="header">
+	<h1>购买解锁该章节</h1>
+</div>
+<div class="w3-main">
+	<form action="/book/pay/deal" method="post">
+	<div class="agile-info">
+		<h3 th:text="'您是否购买'+'《'+${bname}+'》'+${title}"></h3>
+		<p th:text="'需要花费：'+${price}+'书币'"></p>
+			<div class="social"></div>
+		<input name="uid" hidden th:value="${uid}">
+		<input name="bid" hidden th:value="${bid}">
+		<input name="tid" hidden th:value="${tid}">
+
+		<a href="#">取消购买</a>
+<!--		<a href="#">确认购买</a>-->
+		<button>确认购买</button>
+	</div>
+	</form>
+</div>
+<div class="footer-w3l">
+	<p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+</div>
+
+</body>
+</html>

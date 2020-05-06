@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>黄金玄幻</title>
+    <link rel="stylesheet" href="/book/css/indexcss/head.css">
+    <link rel="stylesheet" href="/book/css/indexcss/solid.css">
+    <link rel="stylesheet" href="/book/css/child/boygirl.css">
+    <link rel="stylesheet" href="/book/css/indexcss/bottom.css">
+</head>
+<style>
+    body,
+    h1,
+    a,
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    body {
+        width: 100%;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    .head {
+        width: 1536px;
+        height: 100px;
+        background-image: url('/book/images/xuanhuanbeijing.jpg');
+        background-size: 1536px 200px;
+        margin: 0px auto;
+    }
+    
+    .head div {
+        float: left;
+    }
+    
+    .logo {
+        margin: 30px 0px 0px 300px;
+    }
+    
+    .logo a {
+        color: white;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    .nav {
+        width: 300px;
+        height: 50px;
+        margin: 30px 40px;
+    }
+    
+    .nav a:hover {
+        color: brown;
+    }
+    
+    .nav li {
+        width: 50px;
+        height: 55px;
+        float: left;
+        margin-right: 20px;
+        margin-top: 15px;
+    }
+    
+    .nav a {
+        color: white;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    .se {
+        margin: 30px 100px;
+    }
+    
+    .se input {
+        width: 300px;
+        height: 30px;
+        border: 0px;
+        outline: 0;
+        border-top: solid white 2px;
+    }
+    
+    .se button {
+        margin: 11px -3px;
+        width: 40px;
+        height: 30px;
+        background: black;
+        color: white;
+        border: 1px solid white;
+        outline: 0;
+        cursor: pointer
+    }
+    
+    .be {
+        background-image: url('/book/images/xuanhuanbeijing.jpg');
+        width: 90px;
+        height: 250px;
+        position: relative;
+        margin: 70px -90px;
+        background-size: 145px 200px;
+        z-index: 9999;
+        display: none;
+    }
+    
+    .be li {
+        color: white;
+        width: 90px;
+        height: 25px;
+        margin-right: 10px;
+    }
+    
+    .be a {
+        margin-left: 22px;
+    }
+    
+    .be li:nth-child(1) {
+        margin-top: 0px;
+    }
+    
+    .be li:hover {
+        background: black;
+    }
+    
+    .be a:hover {
+        color: white;
+    }
+    /*中间center部分*/
+    
+    .center {
+        width: 1200px;
+        height: 1000px;
+        margin: 10px auto;
+    }
+    
+    .center div {
+        float: left;
+    }
+    
+    .box {
+        width: 365px;
+        height: 370px;
+        margin-right: 30px;
+    }
+    
+    .box:nth-child(1) {
+        width: 320px;
+        height: 1000px;
+    }
+    
+    .boximg {
+        width: 180px;
+        height: 300px;
+    }
+    
+    .boximg img {
+        margin: 20px 0px;
+        width: 170px;
+        height: 250px;
+    }
+    
+    .boximg img:hover {
+        margin: 18px -2px;
+        width: 172px;
+        height: 252px;
+    }
+    
+    .boxp {
+        width: 185px;
+        height: 500px;
+    }
+    
+    .boxp a {
+        color: black;
+        font: bold;
+    }
+    
+    .boxp h2 {
+        font-weight: normal;
+        margin-bottom: 20px;
+        margin-top: 28px;
+    }
+    
+    .boxp p {
+        margin: 20px 0px;
+    }
+    
+    .boxp p:nth-child(2) {
+        color: #888;
+    }
+    
+    .boxp p:nth-child(3) {
+        font-size: 14px;
+        line-height: 25px;
+    }
+    
+    .boxp p:nth-child(4) {
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        color: #fff;
+        border-radius: 15px;
+        background-color: #bf2c24;
+    }
+    
+    .boxp p:nth-child(4):hover {
+        background: #ec4258
+    }
+    
+    .boxp p:nth-child(4) a {
+        color: white;
+    }
+    /*榜单*/
+    
+    .box h3 {
+        float: left;
+        font-weight: normal;
+        font-size: 16px;
+        padding: 24px 0px 0px 0px;
+        float: left;
+        margin: 0 5px 0px 0;
+        position: relative;
+    }
+    
+    .box a:hover {
+        color: #bf2c24;
+    }
+    
+    .no1 {
+        margin-top: 30px;
+        margin-left: 0px;
+    }
+    
+    .no1 a {
+        color: black;
+        font-size: 17px;
+    }
+    
+    .no1 img {
+        width: 120px;
+        height: 150px;
+        transition: all 500ms ease;
+        transform-style: preserve-3d;
+        transform: perspective(800px) rotateY(-40deg)
+    }
+    
+    .no1 img:hover {
+        transform: perspective(800px) rotateY(0deg);
+    }
+    
+    .no1 div:nth-child(1) {
+        width: 110px;
+        height: 150px;
+    }
+    
+    .no1 div:nth-child(2) {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .no1 h3:nth-child(1) {
+        margin: 5px 0px;
+        width: 16px;
+        height: 20px;
+        padding: 0px;
+        background: #bf2c24;
+        color: white;
+    }
+    
+    .no1 h3 {
+        width: 80px;
+        margin: 5px 6px;
+        padding: 0px;
+    }
+    
+    .no1 p {
+        font-size: 13px;
+        color: #666;
+        margin: 45px 11px;
+    }
+    
+    .no1 p:nth-child(4) {
+        margin-top: -25px;
+    }
+    
+    .no_ {
+        width: 250px;
+    }
+    
+    .no_ div {
+        width: 280px;
+        height: 40px;
+        margin-top: 15px;
+    }
+    
+    .no_ a {
+        color: black;
+    }
+    
+    .no_ h3:nth-child(3n-2) {
+        width: 16px;
+        height: 20px;
+        padding: 0px;
+        background: #ededed;
+        color: black;
+        margin-top: 27px;
+    }
+    
+    .no_ h3:nth-child(3n-1) {
+        border-bottom: 1px solid #a7a7a7;
+        margin-left: 10px;
+    }
+    
+    .no_ h3:nth-child(3n) {
+        margin: 3px 30px;
+        font-size: 13px;
+        color: #888;
+    }
+    
+    #no2 {
+        background: #e67225;
+        color: white;
+    }
+    
+    #no3 {
+        color: white;
+        background: #e6bf25;
+    }
+    
+    .h3one {
+        border-bottom: 2px solid #bf2c24;
+    }
+</style>
+
+<body>
+    <div class="head">
+        <div class="logo">
+            <h1><a th:text="${scoreBook.get(0).getType()}"></a></h1>
+        </div>
+        <div class="nav">
+            <li><a href="/index">首页</a></li>
+            <div class="be">
+                <li><a href="#">免费</a></li>
+                <li><a href="#">完本</a></li>
+                <li><a href="#">男生</a></li>
+                <li><a href="#">女生</a></li>
+                <li><a href="#">古装</a></li>
+                <li><a href="#">古代</a></li>
+            </div>
+        </div>
+        <div class="se">
+            <form>
+                <input type="text">
+                <button>搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="center">
+
+        <div class="box">
+            <h3 class="h3one" th:text="${scoreBook.get(0).getType()}+'评分榜'"></h3>
+            <div class="no1">
+                <div>
+                    <h3>1</h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(0).getId()}+'&bookName='+${scoreBook.get(0).getBname()}}">[[${scoreBook.get(0).getBname()}]]</a></h3>
+
+                    <p class="zuozhe" th:text="'作者：'+${scoreBook.get(0).getAuthor()}">作者:天蚕土豆</p>
+                    <p th:text="'评分：'+${scoreBook.get(0).getScore()}">分类:穿越</p>
+                </div>
+                <div><img src="./images/斗破.jpg" alt=""></div>
+            </div>
+            <div class="no_">
+                <div>
+                    <h3 id="no2">2</h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(1).getId()}+'&bookName='+${scoreBook.get(1).getBname()}}">[[${scoreBook.get(1).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(1).getScore()}]]</span></h3>
+
+                </div>
+                <div>
+                    <h3 id="no3">3</h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(2).getId()}+'&bookName='+${scoreBook.get(2).getBname()}}">[[${scoreBook.get(2).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(2).getScore()}]]</span></h3>
+                </div>
+                <div th:each="i:${#numbers.sequence(4,9)}">
+                    <h3 th:text="${i}"></h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(i).getId()}+'&bookName='+${scoreBook.get(i).getBname()}}">[[${scoreBook.get(i).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(i).getScore()}]]</span></h3>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="box" th:each="bookPage:${pageBook}">
+            <div class="boximg">
+                <img th:src="'/book'+${bookPage.getImg()}">
+            </div>
+            <div class="boxp">
+                <h2><a th:href="@{'/read?id='+${bookPage.getId()}+'&bookName='+${bookPage.getBname()}}" th:text="${bookPage.getBname()}">三体</a></h2>
+                <p th:text="${bookPage.getAuthor()}">天蚕土豆　/　著</p>
+                <p>这里是属于斗气的世界，没有花俏艳丽的魔法，有的，仅仅是繁衍到巅峰的斗气！</p>
+                <p>
+                    <a th:href="@{'/read?id='+${bookPage.getId()}+'&bookName='+${bookPage.getBname()}}" th:text="书籍详情">三体</a>
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="number">
+
+            <li><a href="/index">首页</a></li>
+
+
+            <li th:each="i: ${#numbers.sequence(1,page)}" th:inline="text"><a th:href="'/book/sortBook?type='+${scoreBook.get(0).getType()}+'&page='+${i}">[[${i}]]</a></li>
+
+            <li><a th:href="'/book/sortBook?type='+${scoreBook.get(0).getType()}+'&page='+${page}">尾页</a></li>
+
+        </div>
+
+    </div>
+</body>
+<script src="/book/js/fantasy.js"></script>
+
+</html>
