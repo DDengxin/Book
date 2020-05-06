@@ -14,10 +14,16 @@ public interface BookMapper {
    //获取所有的bookinfo对象
    List<BookInfo> getAllBook();
    //获取单个bookinfo对象
-   BookInfo getBookId(int id);
-   //获取所有的章节、内容
-   List<BookContent> getTitle(String i);
-   BookContent getContent(String tid,String bookName);
+   BookInfo getBookId(String id);
+
+   //获取所有的章节
+   List<BookContent> getTitle(String uid);
+   //获取当前章节、内容
+   BookContent getContent(String tid,String bid);
+
+   //获取当前章节的价格
+   double getContentPrice(String tid,String bid);
+
    //获取所有书籍，按月票大小排序
    List<BookInfo> getDescAllBook();
    //获取按类型的评分大小
@@ -27,9 +33,17 @@ public interface BookMapper {
    //书籍加入用户收藏
    int userAddBook(String  uid,String bid);
 
+   //书籍取消加入用户收藏
+   int userDelBook(String uid,String bid);
+
+   String userGetBook(String uid,String bid);
+
    //获取用户收藏书籍的数量
    int getCollectionCount(String uid);
 
    //获取用户收藏的书籍
    List<BookInfo> getCollectionBook(HashMap map);
+
+   //查看用户已经购买的书籍
+
 }

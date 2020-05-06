@@ -6,19 +6,23 @@
         select * from book_info
     </select>
 
-    <select id="getBookId" parameterType="int" resultType="BookInfo">
+    <select id="getBookId" parameterType="String" resultType="BookInfo">
         select * from book_info where id=#{id}
     </select>
 
 
 <select id="getTitle" resultType="BookContent" parameterType="String">
-select title,tid,bname from book_content where bname=#{bookName}
+    select c.title,c.tid from book_content c,book_info i where c.book_id=#{bid} and i.id=#{bid};
 </select>
 
 
 <select id="getContent" resultType="BookContent" parameterType="String">
-    select content,title,bname,tid,book_id from book_content where bname = #{bookName} and tid=#{tid}
+    select content,title,bname,tid,book_id,price from book_content where book_id=#{bid} and tid=#{tid}
 
+</select>
+
+<select id="getContentPrice" parameterType="String" resultType="double">
+    select price from book_content where book_id=#{bid} and tid=#{tid}
 </select>
 
 <select id="getDescAllBook" resultType="BookInfo">
@@ -37,9 +41,19 @@ select title,tid,bname from book_content where bname=#{bookName}
     select * from book_info where type=#{type} limit #{count},4
 </select>
 
+<select id="userGetBook" parameterType="String" resultType="String">
+    select bid from user_collection_book where bid=#{bid} and uid=#{uid}
+
+</select>
+
 <insert id="userAddBook" parameterType="String">
     insert into user_collection_book values (#{uid},#{bid})
 </insert>
+
+<delete id="userDelBook" parameterType="String">
+    delete from user_collection_book where uid=#{uid} and bid=#{bid}
+</delete>
+
 
 <select id="getCollectionCount" parameterType="String" resultType="int">
     select count(*) from user_collection_book where uid=#{uid}

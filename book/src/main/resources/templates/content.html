@@ -67,15 +67,15 @@
 
     <div class="head">
         <div>
-            <p><a th:href="@{'/content?id='+${currentBook.getTid()-1}+'&bookName='+${currentBook.getBname()}}">上一章</a></p>
-            <p><a href="/index">首页</a></p>
+            <p><a th:href="@{'/content?tid='+${currentBook.getTid()-1}+'&id='+${currentBook.getBook_id()}+'&uid='+${session.uid}}">上一章</a></p>
+            <p><a href="/book/index">首页</a></p>
         </div>
         <div>
             <h2 th:text="${currentBook.getTitle()}"></h2>
         </div>
         <div>
-            <p><a th:href="@{'/content?id='+${currentBook.getTid()+1}+'&bookName='+${currentBook.getBname()}}">下一章</a></p>
-            <p><a th:href="@{'/read?id='+${currentBook.getBook_id()}+'&bookName='+${currentBook.getBname()}}">目录</a></p>
+            <p><a th:href="@{'/content?tid='+${currentBook.getTid()+1}+'&id='+${currentBook.getBook_id()}+'&uid='+${session.uid}}">下一章</a></p>
+            <p><a th:href="@{'/read?id='+${currentBook.getBook_id()}+'&uid='+${session.uid}}">目录</a></p>
         </div>
     </div>
 

@@ -163,6 +163,21 @@ hr {
     border-radius: 20px;
 }
 
+.read button {
+    color: white;
+    background-color: #ff5269;
+    font: 14px/34px PingFangSC-Regular, '-apple-system', Simsun;
+    display: inline-block;
+    width: 120px;
+    height: 34px;
+    margin-right: 20px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+
 .read a:nth-child(1) {
     background: #ff3955;
     color: white;

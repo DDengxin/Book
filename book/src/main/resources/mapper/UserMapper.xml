@@ -6,9 +6,25 @@
         select * from users where email = #{email};
     </select>
 
+    <select id="getUserMoney" resultType="double" parameterType="String">
+        select money from users where id=#{uid}
+    </select>
+
     <insert id="addUser" parameterType="String">
         insert into users(email,password,username) values (#{email},#{password},#{username})
     </insert>
+
+    <insert id="addUserPayBook" parameterType="String">
+        insert into user_pay_book values (#{uid},#{bid},#{tid})
+    </insert>
+
+    <update id="updateUserMoney" parameterType="map">
+        update users set money=#{money} where id=#{uid}
+    </update>
+
+    <select id="getUserPayBook" parameterType="String" resultType="String">
+        select * from user_pay_book where uid=#{uid} and tid=#{tid} and bid=#{bid}
+    </select>
 
 </mapper>
 

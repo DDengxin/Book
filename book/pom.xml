@@ -8,6 +8,7 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <packaging>war</packaging>
     <groupId>com.kuang</groupId>
     <artifactId>book</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -32,10 +33,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -88,6 +97,16 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
 
 
@@ -107,12 +126,13 @@
     </repositories>
 
     <build>
+        <finalName>book</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <fork>true</fork>
+                    <fork> true</fork>
                 </configuration>
             </plugin>
         </plugins>

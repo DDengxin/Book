@@ -1,9 +1,5 @@
 package com.kuang.book.entiy;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 public class BookContent {
     private int tid;
@@ -11,16 +7,18 @@ public class BookContent {
     private String title;
     private String content;
     private int book_id;
+    private double price;
 
     public BookContent() {
     }
 
-    public BookContent(int tid, String bname, String title, String content, int book_id) {
+    public BookContent(int tid, String bname, String title, String content, int book_id, double price) {
         this.tid = tid;
         this.bname = bname;
         this.title = title;
         this.content = content;
         this.book_id = book_id;
+        this.price = price;
     }
 
     public int getTid() {
@@ -61,5 +59,13 @@ public class BookContent {
 
     public void setBook_id(int book_id) {
         this.book_id = book_id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

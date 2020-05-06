@@ -1,7 +1,5 @@
 package com.kuang.book.entiy;
 
-import org.springframework.context.annotation.Configuration;
-
 import java.io.Serializable;
 
 public class BookUsers implements Serializable {
@@ -10,13 +8,15 @@ public class BookUsers implements Serializable {
     private String password;
     private String email;
     private int auth;
+    private double money;
 
-    public BookUsers(int id, String username, String password, String email,int auth) {
+    public BookUsers(int id, String username, String password, String email, int auth, double money) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.auth = auth;
+        this.money = money;
     }
 
     public BookUsers() {
@@ -24,14 +24,6 @@ public class BookUsers implements Serializable {
 
     public int getId() {
         return id;
-    }
-
-    public int getAuth() {
-        return auth;
-    }
-
-    public void setAuth(int auth) {
-        this.auth = auth;
     }
 
     public void setId(int id) {
@@ -50,6 +42,10 @@ public class BookUsers implements Serializable {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -58,18 +54,19 @@ public class BookUsers implements Serializable {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public int getAuth() {
+        return auth;
     }
 
-    @Override
-    public String toString() {
-        return "BookUsers{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", auth=" + auth +
-                '}';
+    public void setAuth(int auth) {
+        this.auth = auth;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 }

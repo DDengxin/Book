@@ -4,18 +4,24 @@ package com.kuang.book.controller;
 import com.kuang.book.entiy.BookContent;
 import com.kuang.book.entiy.BookInfo;
 import com.kuang.book.mapper.BookMapper;
+import com.kuang.book.mapper.UserMapper;
 import com.kuang.book.service.BookService;
+import com.sun.deploy.net.URLEncoder;
+import org.apache.shiro.web.util.RedirectView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Controller
 public class BookController {
@@ -26,74 +32,145 @@ public class BookController {
     @Autowired
     @Qualifier("redisTemplates")
     RedisTemplate redisTemplate;
+    @Autowired
+    UserMapper userMapper;
 
 
-    @GetMapping("/index")
+
+    @GetMapping(value = {"/","/index"})
     public String index(Model model) {
         HashMap<String, List<BookInfo>> descTypeBook;
-        List<BookInfo> AllBook = bookMapper.getAllBook();
+        List<BookInfo> AllBook;
 
-        if (redisTemplate.opsForHash().entries("descBook").get(0)!=null){
-            descTypeBook = (HashMap<String, List<BookInfo>>) redisTemplate.opsForHash().values("descBook");
+        if (redisTemplate.opsForHash().entries("descBook").get("xuanhuan")!=null){
+            descTypeBook = (HashMap<String, List<BookInfo>>) redisTemplate.opsForHash().entries("descBook");
         }else {
             descTypeBook = bookService.getDescAllType();
         }
+        if (redisTemplate.opsForValue().get("AllBook")!=null){
+            AllBook = (List<BookInfo>) redisTemplate.opsForValue().get("AllBook");
 
-        if (redisTemplate.opsForValue().get("AllBook")==null){
+        }else {
             AllBook = bookMapper.getAllBook();
             redisTemplate.opsForValue().set("AllBook",AllBook);
+//            redisTemplate.expire("AllBook",60*5, TimeUnit.SECONDS);
         }
-        model.addAttribute("xuanhuan", descTypeBook.get("玄幻"));
-        model.addAttribute("wuxia", descTypeBook.get("武侠"));
-        model.addAttribute("lishi", descTypeBook.get("历史"));
-        model.addAttribute("xiuxian",descTypeBook.get("修仙"));
-        model.addAttribute("dushi", descTypeBook.get("都市"));
+        model.addAttribute("xuanhuan", descTypeBook.get("xuanhuan"));
+        model.addAttribute("wuxia", descTypeBook.get("wuxia"));
+        model.addAttribute("lishi", descTypeBook.get("lishi"));
+        model.addAttribute("xiuxian",descTypeBook.get("xiuxian"));
+        model.addAttribute("dushi", descTypeBook.get("dushi"));
         model.addAttribute("books", AllBook);
+
         return "index";
     }
 
     @GetMapping("/read")
     public String read(HttpServletRequest request, Model model) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String bookName = request.getParameter("bookName");
-        //如果用户点击了收藏按钮
-        if (request.getParameter("uid")!=null){
-            if (request.getParameter("uid").equals("null")){
-                return "login";
+        String bid = request.getParameter("id");
+        String uid = request.getParameter("uid");
+        if (!(uid.equals("null"))){
+            String userBook = bookMapper.userGetBook(uid, bid);
+
+            if (userBook==null){
+                model.addAttribute("confirm","收藏书籍");
+                model.addAttribute("msg","add");
             }
-            Boolean aBoolean = bookService.addCollectionBook(request.getParameter("uid"), request.getParameter("id"));
-            if (aBoolean==true){
-                model.addAttribute("msg","添加成功");
-            }else {
-                model.addAttribute("msg","该书籍已存在");
+            else {
+                model.addAttribute("cancel","取消收藏");
+                model.addAttribute("msg","del");
             }
+        }else {
+            model.addAttribute("confirm","收藏书籍");
+            model.addAttribute("msg","add");
         }
 
-        BookInfo currenBook = bookMapper.getBookId(id); //获取当前用户点击的书籍
-        List<BookContent> bookTitleItem = bookMapper.getTitle(bookName); //遍历当前页面所有的标题
-        Integer viewCount = bookService.getViewCount(id);//每次访问浏览量+1
+        Integer viewCount = bookService.getViewCount(bid);//每次访问浏览量+1
+        BookInfo currenBook = bookMapper.getBookId(bid); //获取用户当前点击的书籍
+        List<BookContent> bookTitleItem = bookMapper.getTitle(bid); //遍历当前页面所有的标题
         model.addAttribute("viewCount",viewCount);
         model.addAttribute("bookInfo", currenBook);
         model.addAttribute("bookContentItem", bookTitleItem);
         return "read";
     }
 
+    @PostMapping("/read/add")
+    public String readAdd(@RequestParam String uid, @RequestParam String bid){
+        if (uid.equals("")){
+            return "/login";
+        }
+        bookMapper.userAddBook(uid, bid);
+
+        return "redirect:/read?id="+bid+"&uid="+uid;
+    }
+
+    @PostMapping("/read/del")
+    public String readDel(@RequestParam String uid, @RequestParam String bid){
+        bookMapper.userDelBook(uid, bid);
+        return "redirect:/read?id="+bid+"&uid="+uid;
+    }
+
+
+
+
     @GetMapping("/content")
     public String content(HttpServletRequest request, Model model) {
-        String bookName = request.getParameter("bookName");
-        String id = request.getParameter("id");
-        BookContent currentBook = bookMapper.getContent(id, bookName);
-        //翻页
-        if (currentBook==null){
-            BookContent allbook = bookMapper.getContent("1", bookName);
-            model.addAttribute("currentBook",allbook);
+        String bid = request.getParameter("id");
+        String tid = request.getParameter("tid");
+        String uid = request.getParameter("uid");
+        String result = bookService.getAuthContent(bid, tid, uid);
+
+        if (result.equals("free")){
+            BookContent currentBook = bookMapper.getContent(tid, bid);
+            model.addAttribute("currentBook",currentBook);
             return "content";
         }
-        model.addAttribute("currentBook",currentBook);
-        return "content";
-
-
+        else{
+            return "redirect:/pay?tid="+tid+"&uid="+uid+"&bid="+bid;
+        }
     }
+
+    @GetMapping("/pay")
+    public String bookPay(String tid,String uid,String bid,Model model){
+        BookContent book = bookMapper.getContent(tid, bid);
+        double bookPrice = book.getPrice();
+        String bname = book.getBname();
+        String title = book.getTitle();
+        model.addAttribute("tid",tid);
+        model.addAttribute("uid",uid);
+        model.addAttribute("bid",bid);
+        model.addAttribute("price",bookPrice);
+        model.addAttribute("bname",bname);
+        model.addAttribute("title",title.replace(" ",""));
+
+        return "payBook";
+    }
+
+    @PostMapping("/pay/deal")
+    public String payDeal(String uid,String bid,String tid,Model model){
+        //用户未登录
+        if(uid.equals("null")){
+            return "login";
+        }
+        String result = bookService.payBook(uid, bid, tid);
+        //支付成功
+        if (result.equals("支付成功")){
+            return "redirect:/content?tid="+tid+"&id="+bid+"&uid="+uid;
+        }
+        //余额不足
+        else if (result.equals("余额不足")){
+            double userMoney = userMapper.getUserMoney(uid);
+            model.addAttribute("userMoney",userMoney);
+            return "message";
+         //支付异常，事务回滚
+        }else {
+            return null;
+    }
+    }
+
+
+
+
     @GetMapping("sortBook")
     public String bookSort(HttpServletRequest request,Model model){
         String type = request.getParameter("type");

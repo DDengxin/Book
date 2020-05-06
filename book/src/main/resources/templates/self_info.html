@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的书架--个人中心</title>
-    <link rel="stylesheet" href="/css/indexcss/bottom.css">
-    <link rel="stylesheet" href="/css/child/boygirl.css">
+    <link rel="stylesheet" href="/book/css/indexcss/bottom.css">
+    <link rel="stylesheet" href="/book/css/child/boygirl.css">
 </head>
 <style>
     body,
@@ -124,7 +124,7 @@
 
     <div class="head">
         <div>
-            <a href="/index">
+            <a href="/book/index">
                 <li>首页</li>
             </a>
             <li>|</li>
@@ -139,7 +139,7 @@
 
         <div class="login" th:insert="public::login"></div>
         <div>
-            <a href="./index.html"><img src="/images/logo4.gif" alt=""></a>
+            <a href="/book/index"><img src="/book/images/logo4.gif" alt=""></a>
         </div>
 
 
@@ -148,78 +148,30 @@
     <div class="center">
         <div class="user">
             <h3>用户信息</h3>
-            <img src="/images/child/8e8f501d6de8c947f9e1ed3ca70c2b38.jpg" alt="">
+            <img src="/book/images/child/8e8f501d6de8c947f9e1ed3ca70c2b38.jpg" alt="">
             <p id="username" th:text="'用户：'+${session.username}" style="">用户： 蛮吉 </p>
+            <p id="email" th:text="'余额：'+${session.money}+' 书币'"></p>
             <p th:text="'级别：'+${session.auth}"></p>
-            <p id="email" th:text="'邮箱地址：'"></p>
-            <p th:text="${session.email}"></p>
-
         </div>
         <div class="book">
             <div>
                 <h3>我的书架</h3>
             </div>
-            <div>
-                <a href="#"><img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></a>
-                <a href="#">
-                    <h4>斗破苍穹</h4>
-                </a>
+
+            <div th:each="book:${books}">
+                <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}+'&bookName='+${book.getBname()}}"><img src="" th:src="'/book'+${book.getImg()}"></a>
+                <h4 th:text="${book.getBname()}"></h4>
             </div>
-            <div>
-                <a href="#"><img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
-                <a href="#">
-                    <h4>斗破苍穹</h4>
-                </a>
-            </div>
-            <div>
-                <a href="#"><img src="/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
-                <a href="#">
-                    <h4>斗破苍穹</h4>
-                </a>
-            </div>
-            <div>
-                <a href="#"><img src="/images/彼岸/男孩 ǽֽ 梦想 月亮 云 船 飞行 4K壁纸_彼岸图网.jpg" alt=""></a>
-                <a href="#">
-                    <h4>斗破苍穹</h4>
-                </a>
-            </div>
-            <div>
-                <a href="#"><img src="/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
-                <a href="#">
-                    <h4>斗破苍穹</h4>
-                </a>
-            </div>
-            <div>
-                <a href="#"><img src="/images/彼岸/魔道祖师.jpg" alt=""></a>
-                <a href="#">
-                    <h4>斗破苍穹</h4>
-                </a>
-            </div>
+
+
             <div class="number">
 
-                <li>首页</li>
-
-                <li>上一页</li>
+                <li><a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}">首页</a></li>
 
 
-                <li>1</li>
+                <li th:each="i: ${#numbers.sequence(1,page)}" th:inline="text"><a th:href="@{'/selfInfo?uid='+${session.uid}+'&page='+${i}}">[[${i}]]</a></li>
 
-                <li>2</li>
-
-
-                <li>3</li>
-
-
-                <li>4</li>
-
-
-                <li>5</li>
-
-
-                <li>下一页</li>
-
-
-                <li>尾页</li>
+                <li><a th:href="@{'/selfInfo?uid='+${session.uid}+'&page='+${page}}">尾页</a></li>
 
             </div>
         </div>
@@ -289,12 +241,12 @@
             </div>
         </div>
         <div class=" cop ">
-            <img src="/images/彼岸/136126fa5b24d51f7ef99b6b73d55fce.jpg" alt=" ">
-            <img src="/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=" ">
-            <img src="/images/彼岸/云梦.jpg" alt=" ">
-            <img src="/images/彼岸/倒计时.jpg" alt=" ">
-            <img src="/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=" ">
-            <img src="/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=" ">
+            <img src="/book/images/彼岸/136126fa5b24d51f7ef99b6b73d55fce.jpg" alt=" ">
+            <img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=" ">
+            <img src="/book/images/彼岸/云梦.jpg" alt=" ">
+            <img src="/book/images/彼岸/倒计时.jpg" alt=" ">
+            <img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=" ">
+            <img src="/book/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=" ">
             <div>
                 <form action=" # ">
                     <input type="text"><input type="submit" value="搜索">

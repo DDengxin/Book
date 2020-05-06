@@ -37,7 +37,7 @@ public class BookApplicationTests  {
     private RedisTemplate redisTemplate;
     @Test
     public void test(){
-        BookUsers bookUsers = new BookUsers(1,"xxx","1234","@qq",1);
+//        BookUsers bookUsers = new BookUsers(1,"xxx","1234","@qq",1);
 //        redisTemplate.opsForZSet().add("monthTicket","id:2",10000);
 //        redisTemplate.opsForZSet().add("monthTicket","id:3",7892);
         //查询集合user中0-1000000的区间，并排序输出

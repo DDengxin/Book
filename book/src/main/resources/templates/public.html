@@ -85,9 +85,9 @@
 
 <div class="login" th:fragment="login">
     <li th:if="${not #strings.isEmpty(session.username)}">尊敬的用户：<a th:text="${session.username}"></a></li>
-    <li><a id="login" href="/login" th:utext="${session.username==null}?'登录 |':''">登录</a></li>
-    <li><a id="register" href="/register" th:utext="${session.username==null}?'注册':''">注册</a></li>
-    <li><a id="logout" href="/logout" th:if="${not #strings.isEmpty(session.username)}" th:text="注销">注销</a></li>
+    <li><a id="login" href="/book/login" th:utext="${session.username==null}?'登录 |':''">登录</a></li>
+    <li><a id="register" href="/book/register" th:utext="${session.username==null}?'注册':''">注册</a></li>
+    <li><a id="logout" href="/book/logout" th:if="${not #strings.isEmpty(session.username)}" th:text="注销">注销</a></li>
     <!--注册悬浮窗结束-->
 
 </div>
