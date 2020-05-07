@@ -16,6 +16,11 @@ public interface BookMapper {
    //获取单个bookinfo对象
    BookInfo getBookId(String id);
 
+   //添加书籍
+   int addBook(String id,String bname,String author,String img,String desc,String type,String state,String ticket,String score);
+   int addBookContent(String book_id,String tid,String bname,String title,String content,String price);
+
+
    //获取所有的章节
    List<BookContent> getTitle(String uid);
    //获取当前章节、内容
@@ -44,6 +49,7 @@ public interface BookMapper {
    //获取用户收藏的书籍
    List<BookInfo> getCollectionBook(HashMap map);
 
-   //查看用户已经购买的书籍
+   //模糊查询
+   List<BookInfo> getSearchBook(String words);
 
 }

@@ -89,7 +89,7 @@ a {
 /*works*/
 
 .way {
-    margin-top: 15px;
+    margin-top: -8px;
     height: 30px;
     border-bottom: 1px solid black;
 }
@@ -117,7 +117,7 @@ a {
 }
 
 .letter:nth-child(2) {
-    display: none;
+    /*display: none;*/
 }
 
 .letter div {

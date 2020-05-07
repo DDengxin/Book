@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>黄金玄幻</title>
+    <title>黄金书屋评分榜</title>
     <link rel="stylesheet" href="/book/css/indexcss/head.css">
     <link rel="stylesheet" href="/book/css/indexcss/solid.css">
     <link rel="stylesheet" href="/book/css/child/boygirl.css">
@@ -347,7 +347,7 @@
             <h1><a th:text="${scoreBook.get(0).getType()}"></a></h1>
         </div>
         <div class="nav">
-            <li><a href="/index">首页</a></li>
+            <li><a href="/book/index">首页</a></li>
             <div class="be">
                 <li><a href="#">免费</a></li>
                 <li><a href="#">完本</a></li>
@@ -371,26 +371,26 @@
             <div class="no1">
                 <div>
                     <h3>1</h3>
-                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(0).getId()}+'&bookName='+${scoreBook.get(0).getBname()}}">[[${scoreBook.get(0).getBname()}]]</a></h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(0).getId()}+'&uid='+${session.uid}}">[[${scoreBook.get(0).getBname()}]]</a></h3>
 
                     <p class="zuozhe" th:text="'作者：'+${scoreBook.get(0).getAuthor()}">作者:天蚕土豆</p>
                     <p th:text="'评分：'+${scoreBook.get(0).getScore()}">分类:穿越</p>
                 </div>
-                <div><img src="./images/斗破.jpg" alt=""></div>
+                <div><img th:src="'/book'+${scoreBook.get(0).getImg()}"></div>
             </div>
             <div class="no_">
                 <div>
                     <h3 id="no2">2</h3>
-                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(1).getId()}+'&bookName='+${scoreBook.get(1).getBname()}}">[[${scoreBook.get(1).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(1).getScore()}]]</span></h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(1).getId()}+'&uid='+${session.uid}}">[[${scoreBook.get(1).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(1).getScore()}]]</span></h3>
 
                 </div>
                 <div>
                     <h3 id="no3">3</h3>
-                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(2).getId()}+'&bookName='+${scoreBook.get(2).getBname()}}">[[${scoreBook.get(2).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(2).getScore()}]]</span></h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(2).getId()}+'&uid='+${session.uid}}">[[${scoreBook.get(2).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(2).getScore()}]]</span></h3>
                 </div>
                 <div th:each="i:${#numbers.sequence(4,9)}">
                     <h3 th:text="${i}"></h3>
-                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(i).getId()}+'&bookName='+${scoreBook.get(i).getBname()}}">[[${scoreBook.get(i).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(i).getScore()}]]</span></h3>
+                    <h3 th:inline="text"><a th:href="@{'/read?id='+${scoreBook.get(i).getId()}+'&uid='+${session.uid}}">[[${scoreBook.get(i).getBname()}]]</a><span>&nbsp;&nbsp;&nbsp;&nbsp; 评分：[[${scoreBook.get(i).getScore()}]]</span></h3>
 
                 </div>
 
@@ -401,11 +401,11 @@
                 <img th:src="'/book'+${bookPage.getImg()}">
             </div>
             <div class="boxp">
-                <h2><a th:href="@{'/read?id='+${bookPage.getId()}+'&bookName='+${bookPage.getBname()}}" th:text="${bookPage.getBname()}">三体</a></h2>
+                <h2><a th:href="@{'/read?id='+${bookPage.getId()}+'&uid='+${session.uid}}" th:text="${bookPage.getBname()}">三体</a></h2>
                 <p th:text="${bookPage.getAuthor()}">天蚕土豆　/　著</p>
                 <p>这里是属于斗气的世界，没有花俏艳丽的魔法，有的，仅仅是繁衍到巅峰的斗气！</p>
                 <p>
-                    <a th:href="@{'/read?id='+${bookPage.getId()}+'&bookName='+${bookPage.getBname()}}" th:text="书籍详情">三体</a>
+                    <a th:href="@{'/read?id='+${bookPage.getId()}+'&uid='+${session.uid}}" th:text="书籍详情">三体</a>
                 </p>
             </div>
         </div>

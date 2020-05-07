@@ -10,9 +10,17 @@
         select * from book_info where id=#{id}
     </select>
 
+    <insert id="addBook" parameterType="String">
+        insert into book_info values (#{id},#{bname},#{author},#{img},#{desc},#{type},#{state},#{ticket},#{score});
+    </insert>
+
+    <insert id="addBookContent" parameterType="String">
+        insert into book_content values (#{book_id},#{tid},#{bname},#{title},#{content},#{price});
+    </insert>
+
 
 <select id="getTitle" resultType="BookContent" parameterType="String">
-    select c.title,c.tid from book_content c,book_info i where c.book_id=#{bid} and i.id=#{bid};
+    select c.title,c.tid,c.book_id,c.price from book_content c,book_info i where c.book_id=#{bid} and i.id=#{bid};
 </select>
 
 
@@ -64,6 +72,9 @@
 </select>
 
 
+<select id="getSearchBook" parameterType="String" resultType="BookInfo">
+    select bname,author,id,img,ticket,description,state from book_info where bname like CONCAT('%',#{words},'%') or author like CONCAT('%',#{words},'%') or type like CONCAT('%',#{words},'%') or state like CONCAT('%',#{words},'%');
+</select>
 
 
 

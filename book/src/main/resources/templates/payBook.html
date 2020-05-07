@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Home</title>
+<title>购买解锁章节</title>
 <!-- Meta tag Keywords -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,7 +29,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<input name="bid" hidden th:value="${bid}">
 		<input name="tid" hidden th:value="${tid}">
 
-		<a href="#">取消购买</a>
+		<a href="/book/index">取消购买</a>
 <!--		<a href="#">确认购买</a>-->
 		<button>确认购买</button>
 	</div>

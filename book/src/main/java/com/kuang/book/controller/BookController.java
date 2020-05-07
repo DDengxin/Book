@@ -1,13 +1,10 @@
 package com.kuang.book.controller;
-
-
 import com.kuang.book.entiy.BookContent;
 import com.kuang.book.entiy.BookInfo;
+import com.kuang.book.entiy.BookUsers;
 import com.kuang.book.mapper.BookMapper;
 import com.kuang.book.mapper.UserMapper;
 import com.kuang.book.service.BookService;
-import com.sun.deploy.net.URLEncoder;
-import org.apache.shiro.web.util.RedirectView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,9 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -167,7 +162,13 @@ public class BookController {
             return null;
     }
     }
-
+    @GetMapping("/chargeMoney")
+    public String chargeMoney(HttpServletRequest request,Model model){
+        String uid = request.getParameter("uid");
+        BookUsers userInfo = userMapper.getUserName(uid);
+        model.addAttribute("userInfo",userInfo);
+        return "charge_money";
+    }
 
 
 
@@ -216,6 +217,21 @@ public class BookController {
 
         return "self_info";
     }
+
+    @PostMapping("/search")
+    public String searchBook(String words,Model model){
+        List<BookInfo> result = bookMapper.getSearchBook(words);
+        if (result.size()==0){
+            model.addAttribute("msg","未搜到相关信息");
+            return "search";
+        }
+        model.addAttribute("books",result);
+        return "search";
+
+    }
+
+
+
 }
 
 

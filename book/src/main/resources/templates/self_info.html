@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link rel="stylesheet" type="text/css" href="/book/css/mainui.css"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>我的书架--个人中心</title>
+    <title>我的书架</title>
     <link rel="stylesheet" href="/book/css/indexcss/bottom.css">
     <link rel="stylesheet" href="/book/css/child/boygirl.css">
 </head>
@@ -128,12 +128,8 @@
                 <li>首页</li>
             </a>
             <li>|</li>
-            <a href="#">
-                <li>导航</li>
-            </a>
-            <li>|</li>
-            <a href="./MyBookshelf.html">
-                <li>个人中心</li>
+            <a th:href="@{'/chargeMoney?uid='+${session.uid}}">
+                <li>充值中心</li>
             </a>
         </div>
 
@@ -148,9 +144,9 @@
     <div class="center">
         <div class="user">
             <h3>用户信息</h3>
-            <img src="/book/images/child/8e8f501d6de8c947f9e1ed3ca70c2b38.jpg" alt="">
+            <img src="/book/images/myself.jpg" alt="">
             <p id="username" th:text="'用户：'+${session.username}" style="">用户： 蛮吉 </p>
-            <p id="email" th:text="'余额：'+${session.money}+' 书币'"></p>
+            <p id="email" th:text="'余额：'+${session.money}+' 钻石'"></p>
             <p th:text="'级别：'+${session.auth}"></p>
         </div>
         <div class="book">

@@ -17,13 +17,11 @@
                 <li>首页</li>
             </a>
             <li>|</li>
-            <a href="#">
-                <li>导航</li>
+            <a th:href="@{'/chargeMoney?uid='+${session.uid}}">
+                <li>充值中心</li>
             </a>
-            <li>|</li>
-            <a href="/MyBookshelf.html">
-                <li>个人中心</li>
-            </a>
+
+
         </div>
         <div class="login" th:insert="public::login"></div>
         <div>
@@ -91,8 +89,12 @@
     </div>
     <div class="center" id="center">
 <!--        循环目录章节-->
+
         <ul class="section">
-            <li th:each="bookItem:${bookContentItem}"><a th:href="@{'/content?id='+${bookItem.getBook_id()}+'&tid='+${bookItem.getTid()}+'&uid='+${session.uid}}" th:text="${bookItem.getTitle()}">第一章 陨落的天才</a>
+            <li th:each="bookItem:${bookContentItem}">
+                <img src="/book/images/mian.jpg" style="width: 20px" height="20px"th:if="${bookItem.getPrice()==0}">
+                <img src="/book/images/suo.png" style="width: 20px" height="20px"th:if="${bookItem.getPrice()>0}">
+                <a th:href="@{'/content?id='+${bookItem.getBook_id()}+'&tid='+${bookItem.getTid()}+'&uid='+${session.uid}}" th:text="${bookItem.getTitle()}"></a>
             </li>
 
 

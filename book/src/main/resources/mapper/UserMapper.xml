@@ -26,5 +26,9 @@
         select * from user_pay_book where uid=#{uid} and tid=#{tid} and bid=#{bid}
     </select>
 
+
+    <select id="getUserName" resultType="BookUsers" parameterType="String">
+        select username,money from users where id = #{uid};
+    </select>
 </mapper>
 

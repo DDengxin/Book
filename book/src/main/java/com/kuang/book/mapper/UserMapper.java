@@ -13,6 +13,7 @@ public interface UserMapper {
     BookUsers getUser(String email);
 
     double getUserMoney(String uid);
+
     int updateUserMoney(HashMap map);
 
     int addUserPayBook(String uid,String bid,String tid);
@@ -21,7 +22,7 @@ public interface UserMapper {
 
     int addUser(String email,String password,String username);
 
-
+    BookUsers getUserName(String uid);
 
 
 }

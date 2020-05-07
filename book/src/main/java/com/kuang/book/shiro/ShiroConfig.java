@@ -25,6 +25,7 @@ public class ShiroConfig {
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/selfInfo","authc");
         filterChainDefinitionMap.put("/logout","authc");
+        filterChainDefinitionMap.put("/chargeMoney","authc");
         bean.setLoginUrl("/login");
         //权限
 //        filterChainDefinitionMap.put("/register","perms[superUser]");

@@ -4,7 +4,7 @@
 <!-- Head -->
 <head>
 
-<title>Home</title>
+<title>黄金书屋</title>
 
 <!-- Meta-Tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +34,7 @@
 
 	<p th:text="'当前余额为：'+${userMoney}+'钻石'"></p>
 		<a href="/book/index"><i class="fa fa-angle-double-left" aria-hidden="true"></i>返回首页</a>
-		<a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i>点击充值</a>
+		<a th:href="@{'/chargeMoney'+'?uid='+${session.uid}}" target="_blank"><i class="fa fa-angle-double-left" aria-hidden="true"></i>点击充值</a>
 	</div>
 
 	<div class="w3footeragile">
