@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-consumers-order80" />
+        <module name="cloud-api-commons" />
+        <module name="cloud-eureka7001" />
+        <module name="cloud-provider-payment8001" />
+        <module name="cloud-eureka-info7002" />
+        <module name="cloud-eureka-info7001" />
+        <module name="cloudeureka7001" />
+        <module name="cloud-provider-hystrix-payment8001" />
+        <module name="cloud-provider-payment8002" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="cloud-api-commons" target="1.8" />
+      <module name="cloud-consumers-order80" target="1.8" />
+      <module name="cloud-eureka-info7001" target="1.8" />
+      <module name="cloud-eureka-info7002" target="1.8" />
+      <module name="cloud-provider-hystrix-payment8001" target="1.8" />
+      <module name="cloud-provider-payment8001" target="1.8" />
+      <module name="cloud-provider-payment8002" target="1.8" />
+      <module name="mscloud" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

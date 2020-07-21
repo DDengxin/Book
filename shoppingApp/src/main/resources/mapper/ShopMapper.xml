@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wxapp.shoppingapp.mapper.ShopMapper">
+    <select id="getSwiper" resultType="Swiper">
+        select goods_id,image_src,open_type,navigator_url from swiperdata s,commons c where s.id=c.id;
+    </select>
+    
+    <select id="getCatitems" resultType="Catitems">
+        select * from Catitems;
+    </select>
+
+    <select id="getCommonsName" resultType="CommonsName">
+        select name,image_src from commons_name where id &lt;= 3;
+    </select>
+    
+    <select id="getFloorData" resultType="FloorData">
+        select f.name,c.image_src,f.image_width,c.open_type,c.navigator_url from floordata f,commons c where f.id=c.id;
+    </select>
+
+    <select id="getFloorTitle" resultType="FloorTitle">
+        select * from floor_title;
+    </select>
+
+    <select id="getCategories" resultType="Categories">
+        select * from categories;
+    </select>
+</mapper>

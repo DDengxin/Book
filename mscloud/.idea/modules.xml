@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloud-api-commons/cloud-api-commons.iml" filepath="$PROJECT_DIR$/cloud-api-commons/cloud-api-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-consumers-order80/cloud-consumers-order80.iml" filepath="$PROJECT_DIR$/cloud-consumers-order80/cloud-consumers-order80.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-eureka-info7001/cloud-eureka-info7001.iml" filepath="$PROJECT_DIR$/cloud-eureka-info7001/cloud-eureka-info7001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-eureka-info7002/cloud-eureka-info7002.iml" filepath="$PROJECT_DIR$/cloud-eureka-info7002/cloud-eureka-info7002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-provider-hystrix-payment8001/cloud-provider-hystrix-payment8001.iml" filepath="$PROJECT_DIR$/cloud-provider-hystrix-payment8001/cloud-provider-hystrix-payment8001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-provider-payment8001/cloud-provider-payment8001.iml" filepath="$PROJECT_DIR$/cloud-provider-payment8001/cloud-provider-payment8001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-provider-payment8002/cloud-provider-payment8002.iml" filepath="$PROJECT_DIR$/cloud-provider-payment8002/cloud-provider-payment8002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mscloud.iml" filepath="$PROJECT_DIR$/mscloud.iml" />
+    </modules>
+  </component>
+</project>
