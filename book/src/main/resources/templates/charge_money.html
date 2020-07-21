@@ -6,27 +6,63 @@
 
 <link rel="stylesheet" type="text/css" href="/book/css/amazeui.min.css" />
 <link rel="stylesheet" type="text/css" href="/book/css/mainui.css" />
+	<link rel="stylesheet" href="/book/css/child/read.css">
+	<link rel="stylesheet" href="/book/css/indexcss/bottom.css">
 
+	<script src="/book/js/login/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script src="/book/js/login/jquery.step.js"></script>
+	<script src="/book/js/login/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/book/js/login/bootsnav.js" type="text/javascript"></script>
+
+	<script src="/book/js/login/jquery.js" type="text/javascript"></script>
 </head>
 <body>
+
+<div class="head">
+	<div>
+		<a href="/book/index">
+			<li>首页</li>
+		</a>
+		<li>|</li>
+		<a th:href="@{'/chargeMoney?uid='+${session.uid}}">
+			<li>充值中心</li>
+		</a>
+		<li>|</li>
+		<a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}">
+			<li>个人中心</li>
+		</a>
+		<li>|</li>
+		<a th:href="@{'/pay/orderInfo?uid='+${session.uid}}">
+			<li>订单中心</li>
+		</a>
+	</div>
+	<div class="login" th:insert="public::login"></div>
+	<div>
+		<a href="/book/index" ><img src="/book/images/logo4.gif" alt="" style="margin-top: -18px"></a>
+	</div>
+
+
+</div>
+
 <div class="pay">
 	<!--主内容开始编辑-->
 	<div class="tr_recharge">
 		<div class="tr_rechtext">
 			<p class="te_retit"><img src="/book/images/coin.png" alt="" />充值中心</p>
-			<p>1.钻石是黄金书屋的虚拟货币，你可以使用钻石购买小说章节。</p>
-			<p>2.钻石与人民币换算为1：10，即1元=10个钻石，你可以选择支付宝或者是微信的付款方式来进行充值，钻石每次100个起充。</p>
+			<p id="order_name">1.黄金书币，用来黄金书屋购买的小说中的虚拟物品；不可交易。</p>
+			<p>2.黄金书币与人民币换算为1：10，即1元=10个黄金书币，目前只支持支付宝充值，黄金书币每次100个起充。</p>
 		</div>
 		<form action="" class="am-form" id="doc-vld-msg">
 			<div class="tr_rechbox">
 				<div class="tr_rechhead">
-					<img src="/book/images/myself.jpg" />
+					<input id="order_user" th:value="${session.uid}" type="hidden">
+					<img src="/book/images/myself.png" />
 					<p>充值帐号：
-						<a th:text="${userInfo.getUsername()}"></a>
+						<a th:text="${userInfo.getUsername()}" id="username"></a>
 					</p>
 					<div class="tr_rechheadcion">
 						<img src="/book/images/coin.png" alt="" />
-						<span>当前余额：<span th:text="${userInfo.getMoney()}+'钻石'"></span></span>
+						<span>当前余额：<span th:text="${myMoney}+'黄金书币'"></span></span>
 					</div>
 				</div>
 				<div class="tr_rechli am-form-group">
@@ -60,22 +96,23 @@
 					<input type="number" min="10" max="10000" value="10.00元" class="othbox" data-validation-message="充值金额范围：10-10000元" />
 					<!--<p>充值金额范围：10-10000元</p>-->
 				</div>
-				<div class="tr_rechcho am-form-group">
-					<span>充值方式：</span>
-					<label class="am-radio">
-							<input type="radio" name="radio1" value="" data-am-ucheck required data-validation-message="请选择一种充值方式"><img src="images/wechatpay.png">
-						</label>
-					<label class="am-radio" style="margin-right:30px;">
-							<input type="radio" name="radio1" value="" data-am-ucheck data-validation-message="请选择一种充值方式"><img src="images/zfbpay.png">
-						</label>
-				</div>
+<!--				<div class="tr_rechcho am-form-group">-->
+<!--					<span>充值方式：</span>-->
+<!--					<label class="am-radio">-->
+<!--							<input type="radio" name="radio1" value="" data-am-ucheck required data-validation-message="请选择一种充值方式"><img src="images/wechatpay.png">-->
+<!--						</label>-->
+<!--					<label class="am-radio" style="margin-right:30px;">-->
+<!--							<input type="radio" name="radio1" value="" data-am-ucheck data-validation-message="请选择一种充值方式"><img src="images/zfbpay.png">-->
+<!--						</label>-->
+<!--				</div>-->
 				<div class="tr_rechnum">
 					<span>应付金额：</span>
-					<p class="rechnum">0.00元</p>
+					<p class="rechnum" id="order_price">0.00元</p>
 				</div>
 			</div>
 			<div class="tr_paybox">
-				<input type="submit" value="确认支付" class="tr_pay am-btn" />
+
+				<a href="javascript:void(0)" class="tr_pay am-btn" id="tijiao">创建订单</a>
 				<span>温馨提示：招兵币只限于在简历详情中购买简历，遇到问题请拨打联系电话。</span>
 			</div>
 		</form>
@@ -148,5 +185,58 @@
 </script>
 <div style="text-align:center;">
 </div>
+
+<script type="text/javascript">
+	$('#tijiao').click(function(){
+		var username = document.getElementById("username").innerText;
+		var order_user=document.getElementById("order_user").value;
+		var order_name=document.getElementById("order_name").innerText;
+		var order_price=document.getElementById("order_price").innerText;
+		$.ajax({
+			// async : false,
+			url:'/book/alipay/createOrder',//地址
+			dataType:'text',//数据类型
+			type:'POST',//类型
+			data:{
+				username:username,
+				order_user:order_user,
+				order_name:order_name,
+				order_price:order_price
+			},
+			success:function(data){
+				alert("订单创建成功，请在订单中心查看");
+			},
+			//失败/超时
+			error:function(XMLHttpRequest,textStatus,errorThrown){
+				if(textStatus==='timeout'){
+					alert('請求超時');
+					setTimeout(function(){
+						alert('重新请求');
+					},2000);
+				}
+			}
+		})
+	});
+
+
+</script>
+
+
+
+<!--$.ajax({-->
+<!--async: false,-->
+<!--url: '/book/alipay/gopay',//地址-->
+<!--dataType: 'text',//数据类型-->
+<!--type: 'POST',//类型-->
+<!--data: {-->
+<!--WIDout_trade_no:data,-->
+<!--WIDtotal_amount:total,-->
+<!--WIDsubject:"黄金书币充值"-->
+<!--},-->
+<!--success:function(ok){-->
+<!--alert("支付成功");-->
+<!--$(document.body).html(ok);-->
+<!--}-->
+<!--})-->
 </body>
 </html>

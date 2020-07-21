@@ -26,6 +26,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/selfInfo","authc");
         filterChainDefinitionMap.put("/logout","authc");
         filterChainDefinitionMap.put("/chargeMoney","authc");
+        filterChainDefinitionMap.put("/pay/order","authc");
         bean.setLoginUrl("/login");
         //权限
 //        filterChainDefinitionMap.put("/register","perms[superUser]");

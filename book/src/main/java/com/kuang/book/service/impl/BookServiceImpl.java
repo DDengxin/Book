@@ -5,6 +5,7 @@ import com.kuang.book.entiy.BookInfo;
 import com.kuang.book.mapper.BookMapper;
 import com.kuang.book.mapper.UserMapper;
 import com.kuang.book.service.BookService;
+import org.apache.ibatis.binding.BindingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -119,22 +120,24 @@ public class BookServiceImpl implements BookService {
     }
 
 
-//    @Transactional
+    @Transactional
     @Override
     public String getAuthContent(String bid,String tid,String uid) {
-        double bookPrice = bookMapper.getContentPrice(tid, bid);
-        String userPayBook = userMapper.getUserPayBook(uid, bid, tid);
-        System.out.println(userPayBook);
-        if (bookPrice==0.00 || userPayBook!=null){
-            return "free";
-        } else {
-            return "pay";
+        try {
+            double bookPrice = bookMapper.getContentPrice(tid, bid);
+            String userPayBook = userMapper.getUserPayBook(uid, bid, tid);
+            if (bookPrice == 0.00 || userPayBook != null) {
+                return "free";
+            } else {
+                return "pay";
+            }
+        }catch (BindingException e){
+            return "null";
         }
-
 
     }
 
-//    @Transactional
+    @Transactional
     @Override
     public String payBook(String uid,String bid,String tid) {
         try {

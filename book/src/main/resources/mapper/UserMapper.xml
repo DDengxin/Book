@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="com.kuang.book.mapper.UserMapper">
+
     <select id="getUser" resultType="BookUsers" parameterType="String">
-        select * from users where email = #{email};
+        select * from users where phone = #{phone};
     </select>
 
     <select id="getUserMoney" resultType="double" parameterType="String">
@@ -11,7 +15,7 @@
     </select>
 
     <insert id="addUser" parameterType="String">
-        insert into users(email,password,username) values (#{email},#{password},#{username})
+        insert into users(phone,password,username) values (#{phone},#{password},#{username})
     </insert>
 
     <insert id="addUserPayBook" parameterType="String">
@@ -22,6 +26,11 @@
         update users set money=#{money} where id=#{uid}
     </update>
 
+  <select id="getOrderUserID" parameterType="String" resultType="String">
+      select order_user from users_order where order_total=#{out_trade_no} or order_number=#{out_trade_no} limit 0,1;
+  </select>
+
+
     <select id="getUserPayBook" parameterType="String" resultType="String">
         select * from user_pay_book where uid=#{uid} and tid=#{tid} and bid=#{bid}
     </select>
@@ -29,6 +38,27 @@
 
     <select id="getUserName" resultType="BookUsers" parameterType="String">
         select username,money from users where id = #{uid};
+    </select>
+
+    <insert id="addUserOrder" parameterType="String">
+        insert into users_order(order_user,order_name,order_number,order_price) values (#{order_user},#{order_name},#{order_number},#{order_price});
+    </insert>
+
+
+    <select id="getUserOrder" parameterType="String" resultType="BookUsersOrder">
+        select order_name,order_number,order_price from users_order where order_user=#{uid};
+    </select>
+
+
+    <update id="updateOrderTotal" parameterType="String">
+        update users_order set order_total=#{order_total} where order_number=#{order_number}
+    </update>
+    <delete id="deleteOrderTotal" parameterType="String">
+        delete from users_order where order_number=#{order} or order_total=#{order};
+    </delete>
+
+    <select id="getUserTid" parameterType="String" resultType="java.lang.String">
+        select tid from user_pay_book where uid=#{uid} and bid=#{bid};
     </select>
 </mapper>
 

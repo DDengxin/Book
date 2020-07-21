@@ -131,11 +131,19 @@
             <a th:href="@{'/chargeMoney?uid='+${session.uid}}">
                 <li>充值中心</li>
             </a>
+            <li>|</li>
+            <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}">
+                <li>个人中心</li>
+            </a>
+            <li>|</li>
+            <a th:href="@{'/pay/orderInfo?uid='+${session.uid}}">
+                <li>订单中心</li>
+            </a>
         </div>
 
         <div class="login" th:insert="public::login"></div>
         <div>
-            <a href="/book/index"><img src="/book/images/logo4.gif" alt=""></a>
+            <a href="/book/index"><img src="/book/images/logo4.gif" alt="" style="margin-top: -23px"></a>
         </div>
 
 
@@ -144,23 +152,25 @@
     <div class="center">
         <div class="user">
             <h3>用户信息</h3>
-            <img src="/book/images/myself.jpg" alt="">
+            <img src="/book/images/myself.png" alt="">
             <p id="username" th:text="'用户：'+${session.username}" style="">用户： 蛮吉 </p>
-            <p id="email" th:text="'余额：'+${session.money}+' 钻石'"></p>
             <p th:text="'级别：'+${session.auth}"></p>
+            <p id="email" th:text=" '余额：'+${myMoney}+' 黄金书币'"></p>
+
         </div>
         <div class="book">
             <div>
                 <h3>我的书架</h3>
             </div>
-
+            <h3 th:if="${books.size()==0}" th:text="书架空空如也" style="color: red;text-align: center "></h3>
             <div th:each="book:${books}">
                 <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}+'&bookName='+${book.getBname()}}"><img src="" th:src="'/book'+${book.getImg()}"></a>
                 <h4 th:text="${book.getBname()}"></h4>
             </div>
 
 
-            <div class="number">
+            <div class="number" th:if="${books.size()>6}">
+
 
                 <li><a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}">首页</a></li>
 

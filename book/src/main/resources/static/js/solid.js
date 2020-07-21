@@ -269,9 +269,10 @@ window.onload = function() {
         if (maxtime >= 0) {
 
             //floor() 方法执行的是向下取整计算，它返回的是小于或等于函数参数，并且与之最接近的整数
+            days = Math.floor(maxtime / 360);
             minutes = Math.floor(maxtime / 60);
             seconds = Math.floor(maxtime % 60);
-            msg = +minutes + "分" + seconds + "秒";
+            msg = +days+"天"+minutes + "分" + seconds + "秒";
             selectall('.day')[0].innerHTML = msg;
 
             if (maxtime == 5 * 60) alert("还剩5分钟");

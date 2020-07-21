@@ -10,7 +10,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @MapperScan("com.kuang.book.mapper")
-//@ComponentScan({"com.kuang.book.controller"})
+@ComponentScan("com.kuang.book.controller.Alipay")
+@ComponentScan("com.kuang.book.controller")
+
 public class BookApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

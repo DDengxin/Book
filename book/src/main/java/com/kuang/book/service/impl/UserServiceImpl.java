@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.UUID;
 
 
 @Repository
@@ -16,30 +20,31 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public BookUsers userLogin(String email) {
-        return userMapper.getUser(email);
+    public BookUsers userLogin(String phone) {
+        return userMapper.getUser(phone);
 
     }
 
     @Override
-    public HashMap<String,String> userRegister(String email, String password, String username) {
-
-        HashMap map = new HashMap();
-        BookUsers user = userMapper.getUser(email);
-
-
-        if (user!=null){
-            map.put("msg","邮箱已被注册");
-            return map;
+    public String orderNumTotal(String[] orderArr) {
+        if (orderArr.length==1){
+            return orderArr[0];
+        }else {
+            //重新生成合成统一订单号
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+            String newDate=sdf.format(new Date());
+            StringBuilder result= new StringBuilder();
+            Random random=new Random();
+            for(int i=0;i<3;i++){
+                result.append(random.nextInt(10));
+            }
+            for (int j=0;j<orderArr.length;j++){
+                userMapper.updateOrderTotal (orderArr[j],result+newDate);
+            }
+            return result+newDate;
         }
-        else if (user.getUsername().equals(username)){
-            map.put("msg","用户名已存在");
-            return map;
-        }
-        else{
-            userMapper.addUser(email,password,username);
-            map.put("msg","注册成功");
-            return map;
-        }
+
     }
+
+
 }

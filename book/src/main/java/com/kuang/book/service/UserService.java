@@ -11,9 +11,9 @@ public interface UserService {
     @Autowired
 
 
-    BookUsers userLogin(String email);
+    BookUsers userLogin(String phone);
 
-    HashMap<String,String> userRegister(String email, String password, String username);
+    String orderNumTotal(String[] orderArr);
 
 
 }

@@ -7,12 +7,16 @@ spring:
 
     hikari:
       max-lifetime: 300000
-    url: jdbc:mysql://47.96.153.180:3306/book_store?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://182.92.113.2:3306/book_store?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
 #关闭thymeleaf缓存
   thymeleaf:
     cache: false
-#  开启热部署
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+
+  #  开启热部署
   devtools:
     restart:
       enabled: true  #设置开启热部署
@@ -22,11 +26,16 @@ spring:
       cache: false    #页面不加载缓存，修改即时生效
       #配置redis
   redis:
-    host: 47.96.153.180
+    host: 182.92.113.2
     port: 6379
     password: 991220
-
-
+    timeout: 5000
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 8
+#        min-idle: 0
 
   mvc:
     static-path-pattern=/book/static/**:
@@ -36,6 +45,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.kuang.book.entiy
+
 
 
 server:

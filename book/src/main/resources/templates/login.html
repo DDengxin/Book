@@ -1,79 +1,78 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="/book/css/mainui.css"/>
+<!doctype html>
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<title>黄金书屋用户登录</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" /> 
-
-	<link rel="stylesheet" type="text/css" href="/book/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/book/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/book/fonts/iconic/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="/book/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/book/css/main.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/book/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="/book/css/font-awesome.min.css" type="text/javascript" rel="stylesheet">
+<link href="/book/css/bootsnav.css" type="text/css" rel="stylesheet">
+<link href="/book/css/normalize.css" type="text/css" rel="stylesheet">
+<link href="/book/css/css.css" rel="stylesheet" type="text/css">
+<script src="/book/js/login/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="/book/js/login/bootstrap.min.js" type="text/javascript"></script>
+<script src="/book/js/login/bootsnav.js" type="text/javascript"></script>
+<script src="/book/js/login/jquery.js" type="text/javascript"></script>
+<!--[if IE]><script src="/book//js/login/html5.js"></script><![endif]-->
+<title>登录</title>
 </head>
 
-<body>
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('/book/images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="/book/userSign" method="post"th:action="@{/userSign}">
-					<span class="login100-form-title p-b-49">登录</span>
+<body class="logobg_style">
+  	<div id="large-header" class="large-header login-page">
+  		<canvas id="demo-canvas" width="1590" height="711"></canvas>
+  		<div class="login-form">
+  			<div class="login-content">
+  				<h1 class="title_name">账户登录</h1>
+  				<form method="post" role="form" id="form_login" class="login_padding">
+				<div class="form-group clearfix">
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入邮箱地址">
-						<span class="label-input100">邮箱地址</span>
-						<input class="input100" type="text" name="email" placeholder="请输入邮箱地址" autocomplete="off">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="请输入密码">
-						<span class="label-input100">密码</span>
-						<input class="input100" type="password" name="password" placeholder="请输入密码">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-					<div class="text-right p-t-8 p-b-31">
-						<a href="javascript:">忘记密码？</a>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">登 录</button>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="icon_user"></i>
 						</div>
+
+						<input type="text" class="form-control" name="phone" id="phone" placeholder="手机号" autocomplete="off">
 					</div>
 
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>第三方登录</span>
+				</div>
+
+				<div class="form-group clearfix">
+
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="icon_password"></i>
+						</div>
+
+						<input type="password" class="form-control" name="password" id="password" placeholder="密码" autocomplete="off">
 					</div>
 
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-wechat"></i>
-						</a>
+				</div>
+					<div class=" textright"><a href="/book/index" class="forget">返回首页</a></div>
+                  <div class="tishi"></div>
+				<div class="form-group">
+					<a href="javascript:;" type="submit" class="btn btn-danger btn-block btn-login" onClick="cliLogin()">
+						<i class="fa fa-sign-in"></i>
+						登录
+					</a>
+				</div>
+			<div class=" textright"><a href="/book/register" class="forget">立即注册</a></div>
+				<!-- Implemented in v1.1.4 -->				<div class="form-group">
+					
+				</div>
 
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-qq"></i>
-						</a>
 
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-weibo"></i>
-						</a>
-					</div>
 
-					<div class="flex-col-c p-t-25">
-						<a href="/book/register" class="txt2">立即注册</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	
+			</form>
+  			</div>
+  			
+  		</div>
+  	</div>
 
-	<script src="/book/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="/book/js/main.js"></script>
+
+<script src="/book/js/login/TweenLite/TweenLite.min.js"></script>
+<script src="/book//js/login/TweenLite/EasePack.min.js"></script>
+<script src="/book/js//login/TweenLite/rAF.js"></script>
+<script src="/book/js/login/TweenLite/demo-1.js"></script>
 </body>
-
 </html>

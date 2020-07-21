@@ -76,6 +76,9 @@
     select bname,author,id,img,ticket,description,state from book_info where bname like CONCAT('%',#{words},'%') or author like CONCAT('%',#{words},'%') or type like CONCAT('%',#{words},'%') or state like CONCAT('%',#{words},'%');
 </select>
 
+<select id="getContentCount" parameterType="String" resultType="int">
+    select count(*) from book_content
+</select>
 
 
 </mapper>

@@ -31,8 +31,6 @@
 	<div class="w3layout-agileits">
 
 	<h3>您的余额不足</h3>
-
-	<p th:text="'当前余额为：'+${userMoney}+'钻石'"></p>
 		<a href="/book/index"><i class="fa fa-angle-double-left" aria-hidden="true"></i>返回首页</a>
 		<a th:href="@{'/chargeMoney'+'?uid='+${session.uid}}" target="_blank"><i class="fa fa-angle-double-left" aria-hidden="true"></i>点击充值</a>
 	</div>

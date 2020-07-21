@@ -1,0 +1,149 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/book/css/amazeui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/book/css/mainui.css" />
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车</title>
+    <link rel="stylesheet" href="/book/order/css/reset.css">
+    <link rel="stylesheet" href="/book/order/css/carts.css">
+</head>
+<body>
+    <section class="cartMain">
+        <div class="cartMain_hd">
+            <ul class="order_lists cartTop">
+                <li class="list_chk">
+                    <!--所有商品全选-->
+<!--                    <input type="checkbox" id="all" class="whole_check">-->
+<!--                    <label for="all"></label>-->
+                    <a style="font-size: 15px" href="/book/index"> 首页</a>
+                </li>
+                <li class="list_con">商品名称</li>
+                <li class="list_info">订单号</li>
+                <li class="list_price">单价</li>
+                <li class="list_amount">数量</li>
+                <li class="list_sum">金额</li>
+                <li class="list_op">操作</li>
+            </ul>
+        </div>
+
+        <div class="cartBox">
+            <div class="shop_info">
+                <div class="all_check">
+                    <input type="checkbox" id="shop_a" class="shopChoice">
+                    <label for="shop_a" class="shop"></label>
+                </div>
+                <div class="shop_name">
+                    全选：
+                </div>
+            </div>
+            <div class="order_content">
+                <ul class="order_lists" th:each="goods,GoodsStat:${Goods}" >
+                    <li class="list_chk">
+                    <input type="checkbox" id="checkbox_2" class="son_check" th:id="'checkbox_'+${GoodsStat.index+2}">
+                        <label for="checkbox_2" th:for="'checkbox_'+${GoodsStat.index+2}"><p hidden th:text="${goods.getOrder_number()}"></p></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="/book/order/images/money.jpg" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;" th:text="${goods.getOrder_name()}" id="order_name">黄金书币，用来黄金书屋购买的小说中的虚拟物品，不可交易</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p th:text="${goods.getOrder_number()}" class="dingdan"></p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price" th:text="'￥'+${goods.getOrder_price()}">￥980</p>
+                    </li>
+                    <p th:text="${session.uid}" hidden id="uid"></p>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price" th:text="'￥'+${goods.getOrder_price()}">￥980</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn" th:id="${goods.getOrder_number()}">移除商品</a></p>
+
+                    </li>
+                </ul>
+
+
+
+
+
+
+            </div>
+        </div>
+
+        <!--底部-->
+        <div class="bar-wrapper">
+            <div class="bar-right">
+                <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+                <div class="totalMoney">共计: <strong class="total_text" id="order_price">0.00</strong></div>
+                <div class="calBtn"><a href="javascript:;" id="jiesuan">结算</a></div>
+            </div>
+        </div>
+    </section>
+    <section class="model_bg"></section>
+    <section class="my_model">
+        <p class="title">删除宝贝<span class="closeModel">X</span></p>
+        <p>您确认要删除该宝贝吗？</p>
+        <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
+    </section>
+	
+    <script src="/book/order/js/jquery.min.js"></script>
+    <script src="/book/order/js/carts.js"></script>
+	
+</body>
+
+<script type="text/javascript">
+    $('#jiesuan').click(function(){
+        var arr = "";
+        
+        for (var i = 0; i < document.getElementsByClassName("mark").length; i++) {
+                if (document.getElementsByClassName("mark")[i].className==="shop mark"){
+                }
+                else {
+                arr = arr + document.getElementsByClassName("mark")[i].lastChild.innerText + ",";
+            }
+        }
+
+        var uid=document.getElementById("uid").innerText;
+        var order_name=document.getElementById("order_name").innerText;
+        var order_price=document.getElementById("order_price").innerText;
+        $.ajax({
+            async : false,
+            url:'/book/alipay/gopay',//地址
+            dataType:'text',//数据类型
+            type:'POST',//类型
+            data:{
+                uid:uid,
+                order_numbers:arr,
+                WIDsubject:order_name,
+                WIDtotal_amount:order_price
+            },
+            success:function(data){
+                $(document.body).html(data);
+            },
+            //失败/超时
+            error:function(XMLHttpRequest,textStatus,errorThrown){
+                if(textStatus==='timeout'){
+                    alert('請求超時');
+                    setTimeout(function(){
+                        alert('重新请求');
+                    },2000);
+                }
+            }
+        })
+    });
+
+
+</script>
+</html>

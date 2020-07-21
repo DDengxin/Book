@@ -12,6 +12,12 @@
 
 </head>
 
+<style>
+    body{
+        transform: scale(0.9,1);
+    }
+</style>
+
 <body>
     <div class="wrap" id="wrap">
         <div class="head">
@@ -29,11 +35,15 @@
                     <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}">
                     <li>个人中心</li>
                     </a>
+                    <li>|</li>
+                    <a th:href="@{'/pay/orderInfo?uid='+${session.uid}}">
+                        <li>订单中心</li>
+                    </a>
                 </div>
 
                 <div class="login">
 
-                    <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}"><img th:if="${not #strings.isEmpty(session.username)}" src="/book/images/myself.jpg" class="tr_img" /></a>
+                    <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}"><img th:if="${not #strings.isEmpty(session.username)}" src="/book/images/myself.png" class="tr_img" /></a>
 
                     <li><a id="login" href="/book/login" th:utext="${session.username==null}?'登录 |':''">登录</a></li>
 
@@ -67,7 +77,7 @@
                     <button style="display: block;">搜索</button>
                 </div>
                 </form>
-                <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}"><img src="/book/images/mybook.png" style="margin-left: 200px" height="70px"></a>
+<!--                <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}"><img src="/book/images/mybook.png" style="margin-left: 200px" height="70px"></a>-->
             </div>
         </div>
         <!--head部分结束-->
@@ -78,9 +88,9 @@
                 <li><a href="#zhansi">作品分类</a></li>
                 <li><a href="#tuijian">全部作品</a></li>
                 <li><a href="#paihang">排行</a></li>
-                <li><a href="/academies.html">完本</a></li>
+                <li><a >完本</a></li>
                 <li><a href="#mianfei">免费</a></li>
-                <li><a href="/MyBookshelf.html">客户端</a></li>
+                <li><a >客户端</a></li>
                 <li><a href="#">本站推荐</a></li>
             </div>
             <div class="slideshow ">
@@ -125,9 +135,9 @@
                     </div>
                     <div class="suspend_">
                         <div class="suspend1">
-                            <a href="/read.html"><img src="/book/images/彼岸/魔道祖师.jpg" alt=""></a>
+                            <a><img src="/book/images/彼岸/魔道祖师.jpg" alt=""></a>
 
-                            <h4><a href="/read.html">斗破苍穹</a>
+                            <h4><a>斗破苍穹</a>
                                 <p>
                                     [点评]：在看《斗破苍穹》的时候就要在有些不明白为什么古元的年龄那么大为什么他的女儿年龄那么小和一些其他的方面不理解。
                                 </p>
@@ -188,9 +198,9 @@
                                 </p>
                             </div>
                             <div class="cutimg4">
-                                <a href="/read.html"><img src="/book/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
-                                <a href="/read.html"><img src="/book/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
-                                <a href="/read.html"><img src="/book/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/book/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/book/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></a>
+                                <a><img src="/book/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -327,14 +337,15 @@
                 <div id="container">
                     <div class="wrap" id="wrap">
                         <div class="box">
-                            <div class="item item5">
-                                <a><img src="/book/images/彼岸/136126fa5b24d51f7ef99b6b73d55fce.jpg" alt="" /></a>
-                            </div>
+
                             <div class="item item1">
                                 <a><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt="" /></a>
                             </div>
+                            <div class="item item5">
+                                <a><img src="/book/images/彼岸/136126fa5b24d51f7ef99b6b73d55fce.jpg" alt="" /></a>
+                            </div>
                             <div class="item item2">
-                                <a href="/read.html"><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt="" /></a>
+                                <a><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt="" /></a>
                             </div>
                             <div class="item item3">
                                 <a><img src="/book/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt="" /></a>
@@ -381,7 +392,7 @@
                 <div class="shove_one">
                     <p style="margin-top:20px;">本周推荐</p>
                     <ul>
-                        <li th:each="book:${books}"th:if="${book.getId()}>20 and ${book.getId()}<33">
+                        <li th:each="book:${books}"th:if="${book.getId()}>20 and ${book.getId()}<32">
                             <a th:text="'['+${book.getType()}+']'"></a>
                             <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}" th:text="${book.getBname()}">三体</a>
                             <em><a th:text="${book.getAuthor()}">刘慈溪</a></em>
@@ -404,7 +415,7 @@
                 <div class="shove_thrre">
                     <p style="margin-top:20px;">新文风</p>
                     <ul>
-                        <li th:each="book:${books}" th:if="${book.getId()}<=12">
+                        <li th:each="book:${books}" th:if="${book.getId()}<=10">
                             <a th:text="'['+${book.getType()}+']'"></a>
                             <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}" th:text="${book.getBname()}">三体</a>
                             <em><a th:text="${book.getAuthor()}">刘慈溪</a></em>
@@ -413,7 +424,7 @@
                 </div>
             </div>
             <div>
-                <a href="/"><img src="/book/images/logo4.gif" id="paihang" alt=""></a>
+                <a href="/book/index"><img src="/book/images/logo4.gif" id="paihang" alt=""></a>
             </div>
 
             <!--榜-->
@@ -566,7 +577,7 @@
             <!--ad位置-->
             <div id="zhansi">
                 <div>
-                    <a href="/">
+                    <a href="/book/index">
                         <img src="/book/images/logo4.gif" alt="">
                     </a>
                 </div>
@@ -581,34 +592,21 @@
             <div class="ro">
                 <!--1-->
                 <!--最新作品-->
-                <div class="rote1">
-                    <div id="box29Main1" class="box">
-                        <ul id="box29Main1Ul">
-                            <li><img src="/book/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/少女 星沉 大海 星尘 二次元动漫3440x1440壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+<!--                th:each="book,bookStart:${books}" th:if="${book.getId()}>=31 and ${book.getId()}<=33"-->
+                <div class="rote1" th:each="i: ${#numbers.sequence(29,29)}">
+                    <div class="box" th:id="'box'+${i}+'Main1'">
+                        <ul th:id="'box'+${i}+'Main1Ul'">
+                            <!--                            <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}">-->
+                            <li th:each="book,bookStart:${books}" th:if="${book.getId()}>=1*${i} and ${book.getId()}<=1*${i}+2"><a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}"><img th:src="'/book'+${book.getImg()}"></a></li>
                         </ul>
-                        <div class="box29-clt1" id="box29_clt">
-                            <span class="box29-clt1-prev"><</span>
-                            <span class="box29-clt1-next">></span>
+                        <div class="box2-clt1" th:class="'box'+${i}+'-clt1'" th:id="'box'+${i}+'_clt'">
+                            <span class="box2-clt1-prev" th:class="'box'+${i}+'-clt1-prev'"><</span>
+                            <span class="box2-clt1-next" th:class="'box'+${i}+'-clt1-next'">></span>
                         </div>
                     </div>
-                    <div class="brief">
+                    <div class="brief2">
                         <div>
-<!--                            <h4><a href="./read4.html">斗破苍穹</a></h4>-->
-<!--                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>-->
-                            <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
-                            </p>
-                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
-                        </div>
-                    </div>
-
-                    <div class="brief">
-                        <div>
-                            <h4><a href="./read4.html">武动乾坤</a></h4>
+                            <h4><a href="./read4.html" >斗破苍穹</a></h4>
                             <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
                             <p>
                                 <b>19,455,033</b>
@@ -618,18 +616,35 @@
                             <p><a href="">书籍详情</a></p>
                         </div>
                     </div>
+
+                    <div class="brief2">
+                        <div>
+                            <h4><a th:text="${books.get(i).getBname()}">武动乾坤</a></h4>
+                            <p><a th:text="'评分-'+${books.get(i).getScore()}+'分'">8.9分</a></p>
+                            <p>
+                                <span>月票--</span>
+                                <b th:text="${books.get(i).getTicket()}+'张'">19,455,033</b>
+
+                            </p>
+                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
+                            <p><a th:href="@{'/read?id='+${books.get(i).getId()}+'&uid='+${session.uid}}"></li>书籍详情</a></p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rote1">
-                    <div id="box2Main1" class="box">
-                        <ul id="box2Main1Ul">
-                            <li><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+
+
+
+
+                <div class="rote1" th:each="i: ${#numbers.sequence(2,3)}">
+                    <div class="box" th:id="'box'+${i}+'Main1'">
+                        <ul id="box2Main1Ul" th:id="'box'+${i}+'Main1Ul'">
+                            <!--                            <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}">-->
+                            <li th:each="book,bookStart:${books}" th:if="${book.getId()}>=5*${i} and ${book.getId()}<=5*${i}+2"><a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}"><img th:src="'/book'+${book.getImg()}"></a></li>
                         </ul>
-                        <div class="box2-clt1" id="box2_clt">
-                            <span class="box2-clt1-prev"><</span>
-                            <span class="box2-clt1-next">></span>
+                        <div class="box2-clt1" id="box2_clt" th:class="'box'+${i}+'-clt1'" th:id="'box'+${i}+'_clt'">
+                            <span class="box2-clt1-prev" th:class="'box'+${i}+'-clt1-prev'"><</span>
+                            <span class="box2-clt1-next" th:class="'box'+${i}+'-clt1-next'">></span>
                         </div>
                     </div>
                     <div class="brief2">
@@ -647,54 +662,15 @@
 
                     <div class="brief2">
                         <div>
-                            <h4><a href="./read4.html">武动乾坤</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <h4><a th:text="${books.get(i).getBname()}">武动乾坤</a></h4>
+                            <p><a th:text="'评分-'+${books.get(i).getScore()}+'分'">8.9分</a></p>
                             <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
+                                <span>月票--</span>
+                                <b th:text="${books.get(i).getTicket()}+'张'">19,455,033</b>
+
                             </p>
                             <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rote1">
-
-                    <div id="box3Main1" class="box">
-                        <ul id="box3Main1Ul">
-                            <li><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
-                        </ul>
-                        <div class="box3-clt1" id="box3_clt">
-                            <span class="box3-clt1-prev"><</span>
-                            <span class="box3-clt1-next">></span>
-                        </div>
-                    </div>
-                    <div class="brief3">
-                        <div>
-                            <h4><a href="">斗破苍穹</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
-                            <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
-                            </p>
-                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
-                        </div>
-                    </div>
-
-                    <div class="brief3">
-                        <div>
-                            <h4><a href="./read1.html">武动乾坤</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
-                            <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
-                            </p>
-                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
+                            <p><a th:href="@{'/read?id='+${books.get(i).getId()}+'&uid='+${session.uid}}"></li>书籍详情</a></p>
                         </div>
                     </div>
                 </div>
@@ -704,21 +680,20 @@
                     <h3>最新作品</h3>
                 </div>
 
-                <div class="rote1">
-                    <div id="box4Main1" class="box">
-                        <ul id="box4Main1Ul">
-                            <li><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/魔道祖师.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                <div class="rote1" th:each="i: ${#numbers.sequence(4,4)}">
+                    <div class="box" th:id="'box'+${i}+'Main1'">
+                        <ul th:id="'box'+${i}+'Main1Ul'">
+                            <!--                            <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}">-->
+                            <li th:each="book,bookStart:${books}" th:if="${book.getId()}>=5*${i} and ${book.getId()}<=5*${i}+2"><a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}"><img th:src="'/book'+${book.getImg()}"></a></li>
                         </ul>
-                        <div class="box4-clt1" id="box4_clt">
-                            <span class="box4-clt1-prev"><</span>
-                            <span class="box4-clt1-next">></span>
+                        <div class="box2-clt1" th:class="'box'+${i}+'-clt1'" th:id="'box'+${i}+'_clt'">
+                            <span class="box2-clt1-prev" th:class="'box'+${i}+'-clt1-prev'"><</span>
+                            <span class="box2-clt1-next" th:class="'box'+${i}+'-clt1-next'">></span>
                         </div>
                     </div>
-                    <div class="brief4">
+                    <div class="brief2">
                         <div>
-                            <h4><a href="">斗破苍穹</a></h4>
+                            <h4><a href="./read4.html" >斗破苍穹</a></h4>
                             <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
                             <p>
                                 <b>19,455,033</b>
@@ -729,36 +704,35 @@
                         </div>
                     </div>
 
-                    <div class="brief4">
+                    <div class="brief2">
                         <div>
-                            <h4><a href="">武动乾坤</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <h4><a th:text="${books.get(i).getBname()}">武动乾坤</a></h4>
+                            <p><a th:text="'评分-'+${books.get(i).getScore()}+'分'">8.9分</a></p>
                             <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
+                                <span>月票--</span>
+                                <b th:text="${books.get(i).getTicket()}+'张'">19,455,033</b>
+
                             </p>
                             <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
+                            <p><a th:href="@{'/read?id='+${books.get(i).getId()}+'&uid='+${session.uid}}"></li>书籍详情</a></p>
                         </div>
                     </div>
                 </div>
 
-
-                <div class="rote1">
-                    <div id="box3Main5" class="box">
-                        <ul id="box3Main5Ul">
-                            <li><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
+                <div class="rote1" th:each="i: ${#numbers.sequence(5,6)}">
+                    <div class="box" th:id="'box3'+'Main'+${i}">
+                        <ul th:id="'box3Main'+${i}+'Ul'">
+                            <!--                            <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}">-->
+                            <li th:each="book,bookStart:${books}" th:if="${book.getId()}>=5*${i} and ${book.getId()}<=5*${i}+2"><a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}"><img th:src="'/book'+${book.getImg()}"></a></li>
                         </ul>
-                        <div class="box5-clt1" id="box5_clt">
-                            <span class="box5-clt1-prev"><</span>
-                            <span class="box5-clt1-next">></span>
+                        <div class="box2-clt1" th:class="'box'+${i}+'-clt1'" th:id="'box'+${i}+'_clt'">
+                            <span class="box2-clt1-prev" th:class="'box'+${i}+'-clt1-prev'"><</span>
+                            <span class="box2-clt1-next" th:class="'box'+${i}+'-clt1-next'">></span>
                         </div>
                     </div>
-                    <div class="brief5">
+                    <div class="brief2">
                         <div>
-                            <h4><a href="">斗破苍穹</a></h4>
+                            <h4><a href="./read4.html" >斗破苍穹</a></h4>
                             <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
                             <p>
                                 <b>19,455,033</b>
@@ -769,58 +743,21 @@
                         </div>
                     </div>
 
-                    <div class="brief5">
+                    <div class="brief2">
                         <div>
-                            <h4><a href="">武动乾坤</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
+                            <h4><a th:text="${books.get(i).getBname()}">武动乾坤</a></h4>
+                            <p><a th:text="'评分-'+${books.get(i).getScore()}+'分'">8.9分</a></p>
                             <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
+                                <span>月票--</span>
+                                <b th:text="${books.get(i).getTicket()}+'张'">19,455,033</b>
+
                             </p>
                             <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
+                            <p><a th:href="@{'/read?id='+${books.get(i).getId()}+'&uid='+${session.uid}}"></li>书籍详情</a></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="rote1">
-                    <div id="box3Main6" class="box">
-                        <ul id="box3Main6Ul">
-                            <li><img src="/book/images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg" alt=""></li>
-                            <li><img src="/book/images/彼岸/元宵节放天灯壁纸_彼岸图网.jpg" alt=""></li>
-                        </ul>
-                        <div class="box6-clt1" id="box6_clt">
-                            <span class="box6-clt1-prev"><</span>
-                            <span class="box6-clt1-next">></span>
-                        </div>
-                    </div>
-                    <div class="brief6">
-                        <div>
-                            <h4><a href="">斗破苍穹</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
-                            <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
-                            </p>
-                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
-                        </div>
-                    </div>
-
-                    <div class="brief6">
-                        <div>
-                            <h4><a href="">武动乾坤</a></h4>
-                            <p><a href="">如倾如诉<em>-</em>8.9分</a></p>
-                            <p>
-                                <b>19,455,033</b>
-                                <span>人气</span>
-                            </p>
-                            <p>召唤无数使魔，踏上拯救无限位面之路</p>
-                            <p><a href="">书籍详情</a></p>
-                        </div>
-                    </div>
-                </div>
                 <!--最新作品结束-->
             </div>
 
@@ -845,54 +782,17 @@
                         <a href=" ./read.html "></a>进入频道>></a>
                     </p>
                 </div>
-                <div>
+                <div th:each="book:${books}" th:if="${book.getId()>0 and book.getId()<6}">
                     <p>
-                        <a href=" ./read.html "><img src=" images/彼岸/中国上海城市夜景4K壁纸_彼岸图网.jpg "></a>
+                        <a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}"><img th:src="'/book'+${book.getImg()}"></a>
                     </p>
-                    <a href=" ./read.html ">
-                        <p>我在诸夏当大王</p>
+                    <a>
+                        <p th:text="${book.getBname()}"></p>
                     </a>
-                    <s>5起点币⁄千字</s>
-                    <p>免费阅读</p>
+                    <s>17黄金币⁄章</s>
+                    <p ><a th:href="@{'/read?id='+${book.getId()}+'&uid='+${session.uid}}">免费阅读</a></p>
                 </div>
-                <div>
-                    <p><img src=" images/彼岸/云梦.jpg "></p>
-                    <a href=" ./read.html ">
-                        <p>我在诸夏当大王</p>
-                    </a>
-                    <s>5起点币⁄千字</s>
-                    <p>免费阅读</p>
-                </div>
-                <div>
-                    <p>
-                        <a href=" ./read.html "><img src=" images/彼岸/日本东京城市夜景3440x1440壁纸_彼岸图网.jpg "></a>
-                    </p>
-                    <a href=" ./read.html ">
-                        <p>我在诸夏当大王</p>
-                    </a>
-                    <s>5起点币⁄千字</s>
-                    <p>免费阅读</p>
-                </div>
-                <div>
-                    <p>
-                        <a href=" ./read.html "><img src=" images/彼岸/男孩梦想 月亮 云 船 飞行 4K壁纸_彼岸图网.jpg "></a>
-                    </p>
-                    <a href=" ./read.html ">
-                        <p>我在诸夏当大王</p>
-                    </a>
-                    <s>5起点币⁄千字</s>
-                    <p>免费阅读</p>
-                </div>
-                <div>
-                    <p>
-                        <a href=" ./read.html "><img src=" images/彼岸/阿丽塔战斗天使 翅膀 幻想艺术 4k壁纸_彼岸图网.jpg "></a>
-                    </p>
-                    <a href=" ./read.html ">
-                        <p>我在诸夏当大王</p>
-                    </a>
-                    <s>5起点币⁄千字</s>
-                    <p>免费阅读</p>
-                </div>
+
 
             </div>
         </div>

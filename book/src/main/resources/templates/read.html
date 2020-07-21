@@ -7,25 +7,44 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/book/css/child/read.css">
     <link rel="stylesheet" href="/book/css/indexcss/bottom.css">
+
+    <script src="/book/js/login/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="/book/js/login/jquery.step.js"></script>
+    <script src="/book/js/login/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/book/js/login/bootsnav.js" type="text/javascript"></script>
+
+    <script src="/book/js/login/jquery.js" type="text/javascript"></script>
     <title th:text="${bookInfo.getBname()}"></title>
 </head>
+<style>
+    body{
+        transform: scale(0.9,1);
+    }
+</style>
+
 
 <body>
     <div class="head">
         <div>
-            <a th:href="@{/index}">
+            <a href="/book/index">
                 <li>首页</li>
             </a>
             <li>|</li>
             <a th:href="@{'/chargeMoney?uid='+${session.uid}}">
                 <li>充值中心</li>
             </a>
-
-
+            <li>|</li>
+            <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}">
+                <li>个人中心</li>
+            </a>
+            <li>|</li>
+            <a th:href="@{'/pay/orderInfo?uid='+${session.uid}}">
+                <li>订单中心</li>
+            </a>
         </div>
         <div class="login" th:insert="public::login"></div>
         <div>
-            <a href="/book/index"><img src="/book/images/logo4.gif" alt=""></a>
+            <a href="/book/index" ><img src="/book/images/logo4.gif" alt="" style="margin-top: -10px"></a>
         </div>
 
 
@@ -72,17 +91,15 @@
                 <p th:text="'点击量：'+${viewCount}"></p>
                 <p id="briefing" th:text="${bookInfo.getDescription()}">《斗破苍穹》是一本连载于起点中文网的古装玄幻小说，作者是起点白金作家天蚕土豆（李虎），已完结。这里是属于斗气的世界，没有花俏艳丽的魔法，有的，仅仅是繁衍到巅峰的斗气！ 心潮澎湃，无限幻想，迎风挥击千层浪，少年不败热血！ 新书等级制度：斗之气，斗者，斗师，大斗师，斗灵，斗王，斗皇，斗宗，斗尊，斗圣，斗帝。
                 </p>
-                <form th:action="@{'/read/'+${msg}}" method="post">
-                    <input name="uid" type="hidden" th:value="${session.uid}">
-                    <input name="bid" type="hidden" th:value="${bookInfo.getId()}">
-                    <input name="bookName" type="hidden" th:value="${bookInfo.getBname()}">
+                    <input id="uid" type="hidden" th:value="${session.uid}">
+                    <input id="bid" type="hidden" th:value="${bookInfo.getId()}">
+                    <input id="bookName" type="hidden" th:value="${bookInfo.getBname()}">
                 <p class="read">
                     <a th:href="@{'/content?id='+${bookInfo.getId()}+'&tid=1'+'&uid='+${session.uid}}">免费试读</a>
-                    <button th:href="@{'/read?id='+${bookInfo.getId()}+'&uid='+${session.uid}}" th:text="${confirm}" th:if="${not #strings.isEmpty(confirm)}"></button>
-                    <button th:href="@{'/read?id='+${bookInfo.getId()}+'&uid='+${session.uid}}" th:text="${cancel}" th:if="${not #strings.isEmpty(cancel)}"></button>
+                    <a href="javascript:void(0);" id="collect" th:text="${msg}"></a>
 
                 </p>
-                </form>
+<!--                </form>-->
             </div>
 
         </div>
@@ -91,12 +108,11 @@
 <!--        循环目录章节-->
 
         <ul class="section">
-            <li th:each="bookItem:${bookContentItem}">
+            <li th:each="bookItem,bookStart:${bookContentItem}">
                 <img src="/book/images/mian.jpg" style="width: 20px" height="20px"th:if="${bookItem.getPrice()==0}">
                 <img src="/book/images/suo.png" style="width: 20px" height="20px"th:if="${bookItem.getPrice()>0}">
                 <a th:href="@{'/content?id='+${bookItem.getBook_id()}+'&tid='+${bookItem.getTid()}+'&uid='+${session.uid}}" th:text="${bookItem.getTitle()}"></a>
             </li>
-
 
         </ul>
     </div>
@@ -185,26 +201,47 @@
     </div>
     <!--button部分结束-->
 </body>
-<script>
-    window.onload = () => {
-
-        var login = document.getElementById('login');
-        var esc = document.getElementById('esc');
-
-        esc.onclick = () => {
-
-            login.innerHTML = '请登录';
-
-        }
-
-        login.onclick = () => {
-
-            login.innerHTML = '欢迎回来:　蛮吉';
-
-        }
 
 
-    }
+<script type="text/javascript">
+        $('#collect').click(function () {
+            var uid = document.getElementById("uid").value;
+            var bid = document.getElementById("bid").value;
+            var action = document.getElementById("collect").innerText;
+
+            $.ajax({
+                url: '/book/read/collect',//地址
+                dataType: 'text',//数据类型
+                type: 'POST',//类型
+                data: {
+                    uid: uid,
+                    bid: bid,
+                    action: action
+
+                },
+                success: function (data) {
+                    if (data == "login") {
+                        $(window).attr("location", "/book/login");
+                    } else if (data == "addSuccess") {
+                        document.getElementById("collect").innerText = "取消收藏"
+                    }else {
+                        document.getElementById("collect").innerText = "收藏书籍"
+                    }
+                },
+                //失败/超时
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (textStatus === 'timeout') {
+                        alert('請求超時');
+                        setTimeout(function () {
+                            alert('重新请求');
+                        }, 2000);
+                    }
+                }
+            })
+        });
 </script>
+
+
+
 
 </html>

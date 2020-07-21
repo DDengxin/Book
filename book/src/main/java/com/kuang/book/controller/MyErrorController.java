@@ -13,13 +13,13 @@ public class MyErrorController implements ErrorController {
         //获取statusCode:401,404,500
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         if(statusCode == 500){
-            return "/error/500";
+            return "500";
         }else if(statusCode == 404){
             return "404";
         }else if(statusCode == 403){
             return "/403";
         }else{
-            return "/500";
+            return "500";
         }
 
     }

@@ -13,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,51 +63,52 @@ public class BookController {
         return "index";
     }
 
+    @GetMapping("/pay/order")
+    public String order(){
+        return "order";
+    }
+
     @GetMapping("/read")
     public String read(HttpServletRequest request, Model model) {
         String bid = request.getParameter("id");
         String uid = request.getParameter("uid");
+
         if (!(uid.equals("null"))){
             String userBook = bookMapper.userGetBook(uid, bid);
-
             if (userBook==null){
-                model.addAttribute("confirm","收藏书籍");
-                model.addAttribute("msg","add");
+                model.addAttribute("msg","收藏书籍");
             }
             else {
-                model.addAttribute("cancel","取消收藏");
-                model.addAttribute("msg","del");
+                model.addAttribute("msg","取消收藏");
             }
         }else {
-            model.addAttribute("confirm","收藏书籍");
-            model.addAttribute("msg","add");
+            model.addAttribute("msg","收藏书籍");
         }
 
         Integer viewCount = bookService.getViewCount(bid);//每次访问浏览量+1
         BookInfo currenBook = bookMapper.getBookId(bid); //获取用户当前点击的书籍
         List<BookContent> bookTitleItem = bookMapper.getTitle(bid); //遍历当前页面所有的标题
+
         model.addAttribute("viewCount",viewCount);
         model.addAttribute("bookInfo", currenBook);
         model.addAttribute("bookContentItem", bookTitleItem);
         return "read";
     }
 
-    @PostMapping("/read/add")
-    public String readAdd(@RequestParam String uid, @RequestParam String bid){
+    @PostMapping("/read/collect")
+    @ResponseBody
+    public String bookCollect(String uid,String bid,String action){
         if (uid.equals("")){
-            return "/login";
+            return "login";
         }
-        bookMapper.userAddBook(uid, bid);
+        else if (action.equals("收藏书籍")){
+            bookMapper.userAddBook(uid, bid);
+            return "addSuccess";
+        }
 
-        return "redirect:/read?id="+bid+"&uid="+uid;
-    }
-
-    @PostMapping("/read/del")
-    public String readDel(@RequestParam String uid, @RequestParam String bid){
         bookMapper.userDelBook(uid, bid);
-        return "redirect:/read?id="+bid+"&uid="+uid;
+        return "delSuccess";
     }
-
 
 
 
@@ -120,52 +124,25 @@ public class BookController {
             model.addAttribute("currentBook",currentBook);
             return "content";
         }
-        else{
+        else if (result.equals("pay")){
             return "redirect:/pay?tid="+tid+"&uid="+uid+"&bid="+bid;
         }
-    }
-
-    @GetMapping("/pay")
-    public String bookPay(String tid,String uid,String bid,Model model){
-        BookContent book = bookMapper.getContent(tid, bid);
-        double bookPrice = book.getPrice();
-        String bname = book.getBname();
-        String title = book.getTitle();
-        model.addAttribute("tid",tid);
-        model.addAttribute("uid",uid);
-        model.addAttribute("bid",bid);
-        model.addAttribute("price",bookPrice);
-        model.addAttribute("bname",bname);
-        model.addAttribute("title",title.replace(" ",""));
-
-        return "payBook";
-    }
-
-    @PostMapping("/pay/deal")
-    public String payDeal(String uid,String bid,String tid,Model model){
-        //用户未登录
-        if(uid.equals("null")){
-            return "login";
+        else {
+            return "404";
         }
-        String result = bookService.payBook(uid, bid, tid);
-        //支付成功
-        if (result.equals("支付成功")){
-            return "redirect:/content?tid="+tid+"&id="+bid+"&uid="+uid;
-        }
-        //余额不足
-        else if (result.equals("余额不足")){
-            double userMoney = userMapper.getUserMoney(uid);
-            model.addAttribute("userMoney",userMoney);
-            return "message";
-         //支付异常，事务回滚
-        }else {
-            return null;
     }
-    }
+
+
+
+
+
+
     @GetMapping("/chargeMoney")
     public String chargeMoney(HttpServletRequest request,Model model){
         String uid = request.getParameter("uid");
+        double myMoney = userMapper.getUserMoney(uid);
         BookUsers userInfo = userMapper.getUserName(uid);
+        model.addAttribute("myMoney",myMoney);
         model.addAttribute("userInfo",userInfo);
         return "charge_money";
     }
@@ -198,12 +175,15 @@ public class BookController {
 
     @GetMapping("/selfInfo")
     public String selfInfo(HttpServletRequest request,Model model){
+        if (request.getParameter("uid").equals("null")){
+            return "login";
+        }
+
         //获取用户当前页的所有书籍
         String spage = request.getParameter("page");
         int page = Integer.parseInt(spage);
         String uid = request.getParameter("uid");//获取当前用户
         List<BookInfo> books = bookService.getCollectionBook(uid, page); //返回分页后的集合对象
-
 
         //通过用户书籍的数量，来判断底部共有多少页
         int bookCount = bookMapper.getCollectionCount(uid);
@@ -212,9 +192,12 @@ public class BookController {
             size-=6;
             count+=1;
         }
+        //获取用户金额
+        double userMoney = userMapper.getUserMoney(uid);
+        model.addAttribute("myMoney",userMoney);
         model.addAttribute("page",count);
+        Collections.reverse(books);
         model.addAttribute("books",books);
-
         return "self_info";
     }
 

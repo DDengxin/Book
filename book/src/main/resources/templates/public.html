@@ -90,7 +90,7 @@
 
 <div class="login" th:fragment="login">
 
-        <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}"><img th:if="${not #strings.isEmpty(session.username)}" src="/book/images/myself.jpg" class="tr_img" /></a>
+        <a th:href="@{'/selfInfo?uid='+${session.uid}+'&page=1'}"><img th:if="${not #strings.isEmpty(session.username)}" src="/book/images/myself.png" style="width: 35px;height: 32px;border-radius: 50%;float: left;margin-right: -20px;" /></a>
 
         <li><a id="login" href="/book/login" th:utext="${session.username==null}?'登录 |':''">登录</a></li>
 

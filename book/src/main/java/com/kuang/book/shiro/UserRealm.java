@@ -38,8 +38,8 @@ public class UserRealm extends AuthorizingRealm {
         System.out.println("执行认证==========>");
         UsernamePasswordToken usertoken = (UsernamePasswordToken)authenticationToken;
 
-        String username = usertoken.getUsername();
-        BookUsers user = userMapper.getUser(username);
+        String phone = usertoken.getUsername();
+        BookUsers user = userMapper.getUser(phone);
         if (user ==null){
             return null;
         }
